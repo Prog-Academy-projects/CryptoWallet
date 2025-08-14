@@ -1,0 +1,41 @@
+html{
+  margin: 0;
+  padding: 0;
+}
+body{
+    margin: 0;
+    padding: 0;
+    /* width: 100%; */
+    max-width: 1440px;
+}
+.main{
+    display: flex;
+    /* height: 100vh; */
+}
+
+.left-panel{
+    width: 20%;
+    background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000 );
+    order: 0;
+    .coin-container{
+        position: relative;
+        width: 100%;
+        height: 200px;
+        img{
+            position: absolute;
+            top: -252px;
+            left: -15px;
+            order: 6;
+        }
+    }
+}
+
+.active-cw{
+    background: #3E784E;
+}
+
+.right-panel{
+    width: 78.9%;
+    background:#000000;
+    padding: 0 1% 0 0;
+}
