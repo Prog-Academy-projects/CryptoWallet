@@ -1,5 +1,5 @@
-import { getCryptoRates } from "./coingecko/rates.js";
-import { getMarketChart } from "./coingecko/chart.js";
+import { getCryptoRates } from "./api-coingecko/crypto-rates.js";
+import { getMarketChart } from "./api-coingecko/market-chart.js";
 
 
 if(document.location.pathname === "/index.html"){

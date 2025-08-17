@@ -174,7 +174,7 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary left-panel" style="width: 280px;"> 
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> 
                 <img class="bi pe-none me-2" src="../assets/img/crypto-logo.svg" alt="" width="72" height="57" aria-hidden="true">
-                <span class="fs-4 poppins-medium">CryptoNite</span> 
+                <span class="fs-4 poppins-medium">CryptoWallet</span> 
             </a> 
             <hr> 
             <ul class="nav nav-pills flex-column mb-auto"> 
@@ -304,50 +304,61 @@
             <nav class="market-container">
                 <h3 class="h4 poppins-medium">Market</h3> 
                 <ul>
-                    <li class="diagram bitcoin">
+                    <li class="chart-container bitcoin">
                         <nav>
-                            <!-- <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1.png" alt="bitcoin"> -->
                             <img src="../assets/img/bitcoin.png" alt="bitcoin">
-                            <h4>Bitcoin</h4>
-                            <p>BTC</p>
+                            <div>
+                                <h4 class="poppins-regular">Bitcoin</h4>
+                                <h5 class="poppins-regular" id="curPrice-bitcoin"></h5>
+                            </div>
+                            <div>
+                                <p>BTC</p>
+                                <p class="poppins-regular difference-style" id="curDif-bitcoin"></p>
+                            </div> 
                         </nav>
-                        <div></div>
+                        <div class="chart">
+                            <canvas id="lineChart-bitcoin"></canvas>
+                        </div>
                     </li>
-                    <li class="diagram">
+                    <li class="chart-container">
                         <nav>
-                            <!-- <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png" alt="ethereum"> -->
                             <img src="../assets/img/ethereum.png" alt="ethereum">
-                            <h4>Ethereum</h4>
-                            <p>ETH</p>
+                            <div>
+                                <h4 class="poppins-regular">Ethereum</h4>
+                                <h5 class="poppins-regular" id="curPrice-ethereum"></h5>
+                            </div> 
+                            <div>
+                                <p>ETH</p>  
+                                <p class="poppins-regular difference-style" id="curDif-ethereum"></p>    
+                            </div>
                         </nav>
-                        <div></div>
+                        <div class="chart">
+                            <canvas id="lineChart-ethereum"></canvas>
+                        </div>
                     </li>
-                    <li class="diagram">
+                    <li class="chart-container">
                         <nav>
-                            <!-- <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/825.png" alt="bitcoin"> -->
-                            <img src="../assets/img/tether.png" alt="tether">
-                            <h4>Tether</h4>
-                            <p>USDT</p>
+                            <img src="../assets/img/tron.png" alt="tron">
+                            <div>
+                                <h4 class="poppins-regular">Tron</h4>
+                                <h5 class="poppins-regular" id="curPrice-tron"></h5>
+                            </div>
+                            <div>
+                                <p>TRX</p>
+                                <p class="poppins-regular difference-style" id="curDif-tron"></p>
+                            </div>
                         </nav>
-                        <div></div>
+                        <div class="chart">
+                            <canvas id="lineChart-tron"></canvas>
+                        </div>
                     </li>
                 </ul>
             </nav>
+                <button id="getMarketChart">Update Charts</button>
             <div>
             </div>
             <table>
-                <button class="getMarketChart">Get Market Chart</button>
-                <thead>
-                    <th>Date</th>
-                    <th>Price</th>
-                    <th>Market Cap</th>
-                    <th>Volume</th>
-                </thead>
-                <tbody class="marketChartBody">
-                </tbody>
-            </table>
-            <table>
-                <button class="getCryptoRates">Get Crypto Rates</button>
+                <button id="getCryptoRates">Show Crypto Rates</button>
                 <thead>
                     <th>Id</th>
                     <th>Name</th>
@@ -364,10 +375,83 @@
     <div class="modal-loader">
         <span class="loader"></span>
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+    <script>
+        const options = {
+                    animation: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        // x: {
+                        //     title: {
+                        //         display: false,
+                        //         text: 'X Axis',
+                        //         font: {
+                        //             size: 14
+                        //         }
+                        //     }
+                        // },
+                        // y: {
+                        //     beginAtZero: true
+                        // }
+                    },
+                    plugins: {
+                        tooltip: {
+                            intersect: false
+                        }
+                    },
+                    elements: {
+                        point: {
+                            // borderWidth: 5
+                            backgroundColor: '#FFA800'
+                        },
+                        line: {
+                            tension: 0.3,
+                            borderColor: '#FFA800',
+                            borderWidth: 1
+                        }
+                    }
+                }
+        // const data = {
+        //     labels: [1,2,3,4,5,6,7,8,9,10],
+        //     datasets: [{
+        //         data: [120, 190, 30, 50, 20, 30, 120, 190, 30, 50],
+        //         label: 'Price'
+        //     },
+        //     // {
+        //     //     label: 'Volume',
+        //     //     data: [2, 3,12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3, 12, 19, 3, 5],
+        //     // }
+        // ]
+        // }
+        const data = {
+            datasets: [{
+                data: [{x: '1', y: 203}, {x: '2', y: '384'}, {x: '3', y: '184'}],
+                label: 'Price',
+                }]
+        }
+        const ctx = document.getElementById('myChart');
+
+        // const myChart = new Chart(
+        //     ctx, {
+        //         type: 'line',
+        //         data,
+        //         options
+        //     });
+        
+        // const addValueButtom = document.querySelector("#getMarketChart")
+        // addValueButtom.addEventListener("click", () => {
+        //     myChart.data.labels.push(myChart.data.labels.length + 1);
+        //     const randomNumber = Math.random() * 100 + 1;
+        //     myChart.data.datasets[0].data.push(randomNumber);
+        //     myChart.update();
+        // })
+
+    </script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/sidebars.js" class="astro-vvvwv3sm"></script>
     <script src="../js/dashboard.js"></script>
     <script type="module" src="../js/api.js"> </script>
+    <script type="module" src="../js/api.js"> </script>
+    <script type="module" src="../js/charts/lineChart.js"> </script>
 </body> 
 </html>

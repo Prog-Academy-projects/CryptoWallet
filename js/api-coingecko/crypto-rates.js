@@ -46,7 +46,7 @@ function showCryptoRates(obj, index) {
     document.querySelector(".cryptoRatesBody").insertAdjacentHTML('beforeend', pattern)
 }
 
-document.querySelector(".getCryptoRates").addEventListener("click", getCryptoRates)
+document.querySelector("#getCryptoRates").addEventListener("click", getCryptoRates)
 
 // (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 // 0
