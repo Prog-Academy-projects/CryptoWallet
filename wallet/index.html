@@ -303,24 +303,25 @@
             <table>
                 <button id="getWallet">Show Balance</button>
                 <thead>
-                    <th>Id</th>
                     <th>Name</th>
-                    <th>Rate to USD</th>
-                    <th>usd_market_cap</th>
-                    <th>usd_24h_vol</th>
-                    <th>usd_24h_change</th>
-                    <th>last_updated_at</th>
+                    <th>Balance</th>
                 </thead>
                 <tbody class="walletBody">
                 </tbody>
             </table>
+            <div class="chart" style="width: 300px;">doughnutChart
+                <button id="getChart">Show Chart</button>
+                <canvas id="doughnutChart"></canvas>
+            </div>
         </section>
         <div class="modal-loader">
             <span class="loader"></span>
         </div> 
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/sidebars.js" class="astro-vvvwv3sm"></script>
-    <script src="../js/wallet.js"></script>
+    <script type="module" src="../js/wallet.js"></script>
 </body> 
 </html>

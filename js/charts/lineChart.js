@@ -3,15 +3,18 @@ let charts = {};
 export const showLineChart = (inputData, inputColor, coin) => {
     const options = {
         animation: true,
+        responsive: true,
         maintainAspectRatio: false,
         scales: {
             x: {
+                display: false,
                 grid: { display: false },
-                ticks: { display: false }
+                // ticks: { display: false }
             },
             y: {
+                display: false,
                 grid: { display: false },
-                ticks: { display: false }
+                // ticks: { display: false }
             }
         },
         plugins: {
@@ -26,15 +29,12 @@ export const showLineChart = (inputData, inputColor, coin) => {
                 borderColor: inputColor,
                 borderWidth: 1.5
             }
-        },
-        responsive: true
+        }
     }
 
     const data = {
         datasets: [{
             data: inputData,
-            label: 'Price',
-            // fill: true,
         }]
     }
 
