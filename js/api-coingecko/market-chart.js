@@ -75,9 +75,13 @@ function renderMarketChart(data, coin) {
     if (difference > 0) {
         span.style.color = "#2FA15D";
         span.style.textShadow = "0 0 5px #2FA15D";
+        span.insertAdjacentHTML('afterbegin',
+            '<svg class="icon" style="filter: drop-shadow(0px 0px 5px #2FA15D)"><use href="../assets/icons/arrow-up-right.svg"></use></svg>')
     } else if (difference < 0) {
         span.style.color = "#A13D2F";
         span.style.textShadow = "0 0 5px #A13D2F";
+        span.insertAdjacentHTML('afterbegin',
+            '<svg class="icon" style="filter: drop-shadow(0px 0px 5px #A13D2F)"><use href="../assets/icons/arrow-down-left.svg"></use></svg>')
     } else {    
         span.style.color = "gray";
         span.style.textShadow = "0 0 5px gray";

@@ -294,13 +294,88 @@
         </div> -->
         <section class="col-md-9 ms-sm-auto col-lg-10 right-panel"> <!-- px-md-3 -->
             <!-- <h1>Dashboard</h1> -->
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-4 "> 
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-4 mb-0 "> 
                 <h1 class="h2 poppins-medium">Dashboard</h1> 
                 <div class="btn-toolbar mb-2 mb-md-0"> 
                     <div class="btn-group me-2 "> 
                     </div> 
                 </div> 
             </div>
+            <nav class="balance-container">
+                <ul>
+                    <li class="balance">
+                        <nav>
+                            <div class="balance-info">
+                                <h4 class="poppins-regular">Balance</h4>
+                                <p class="poppins-regular" id="curBalance">1111.11</p>
+                            </div>
+                            <div>
+                                <p class="poppins-regular difference-style" id="curDif-balance">0.82</p>
+                            </div> 
+                        </nav>
+                        <nav>
+                            <div class="balance-details income">
+                                <h5 class="poppins-medium">
+                                    <svg class="icon">
+                                        <use href="../assets/icons/graph-up-arrow.svg"></use>
+                                    </svg> 
+                                    Income</h5>
+                                <p class="poppins-medium" id="curIncome">222</p>
+                            </div>
+                            <div class="balance-details expences">
+                                <h5 class="poppins-medium">
+                                    <svg class="icon">
+                                        <use href="../assets/icons/graph-down-arrow.svg"></use>
+                                    </svg> 
+                                    Expences</h5>
+                                <p class="poppins-medium" id="curExpences">111</p>
+                            </div>
+                        </nav>
+                    </li>
+                    <li class="currencies">
+                        <nav>
+                            <div>
+                                <h4 class="poppins-regular">Currencis</h4>
+                                <div class="chart">doughnutChart
+                                    <canvas id="doughnutChart"></canvas>
+                                </div>
+                            </div> 
+                            <ul>
+                                <li>
+                                    <img src="../assets/img/ethereum.png" alt="ethereum">
+                                    <div>
+                                        <h5 class="poppins-medium">Ethereum</h5>
+                                        <div>
+                                            <p>ETH</p>  
+                                            <p class="poppins-regular difference-style" id="curDif-eth">1</p> 
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <img src="../assets/img/bitcoin.png" alt="bitcoin">
+                                    <div>
+                                        <h5 class="poppins-medium">Bitcoin</h5>
+                                        <div>
+                                            <p>BTC</p>  
+                                            <p class="poppins-regular difference-style" id="curDif-btc">1</p> 
+                                        </div>
+                                    </div> 
+                                </li>
+                                <li>
+                                    <img src="../assets/img/tether.png" alt="tether">
+                                    <div>
+                                        <h5 class="poppins-medium">Tether</h5>
+                                        <div>
+                                            <p>USDT</p>  
+                                            <p class="poppins-regular difference-style" id="curDif-usdt">1</p> 
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                </ul>
+            </nav>
             <nav class="market-container">
                 <h3 class="h4 poppins-medium">Market</h3> 
                 <ul>
@@ -354,7 +429,7 @@
                     </li>
                 </ul>
             </nav>
-                <button id="getMarketChart">Update Charts</button>
+            <button id="getMarketChart">Update Charts</button>
             <div>
             </div>
             <table>
@@ -372,9 +447,10 @@
                 </tbody>
             </table>
         </section>
-    <div class="modal-loader">
-        <span class="loader"></span>
-    </div>
+        <div class="modal-loader">
+            <span class="loader"></span>
+        </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
     <script>
         const options = {
@@ -450,7 +526,6 @@
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/sidebars.js" class="astro-vvvwv3sm"></script>
     <script src="../js/dashboard.js"></script>
-    <script type="module" src="../js/api.js"> </script>
     <script type="module" src="../js/api.js"> </script>
     <script type="module" src="../js/charts/lineChart.js"> </script>
 </body> 

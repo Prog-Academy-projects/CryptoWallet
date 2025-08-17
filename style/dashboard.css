@@ -1,3 +1,147 @@
+.balance-container{
+    h3{
+        padding: 1% 0 1% 0 ;
+    }
+    ul{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+        height: 200px;
+        padding: 0;
+    }
+}
+
+.balance-container > ul > li{
+    background-color: #2A2A2D;
+    width: 40%;
+    height: inherit;
+    border-radius: 10px;
+    list-style: none;
+}
+
+.balance{
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 5%;
+        height: 36%;
+    }
+    nav:first-child{
+        justify-content: space-between;
+        .balance-info {
+            /* display: flex;
+            flex-direction: column; */
+            /* align-items: flex-start; */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 100%;
+            gap: 20%;
+        }
+        .balance-info > h4,p {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+        .difference-style {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: greenyellow;
+        }
+    }
+    nav:last-child{
+        justify-content:  flex-start;
+        gap: 20%;
+        .balance-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            gap: 20%;
+        }
+        .income h5 {
+            margin: 0;
+            font-size: 1.1rem;
+            svg{
+                color: #2FA15D;
+                filter: drop-shadow(0px 0px 5px #2FA15D);
+            }
+        }
+        .expences {
+            border-left: 1px solid #ffffff;
+            padding-left: 5%;
+        }
+        .expences h5{
+            margin: 0;
+            font-size: 1.1rem;
+            svg{
+                color: #A13D2F;
+                filter: drop-shadow(0px 0px 5px #A13D2F);
+            }
+        }
+    }
+}
+
+.currencies{
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 5%;
+        height: 90%;
+        width: 90%;
+        div{
+            width: 50%;
+            height: inherit;
+            h4{
+                margin: 0;
+                font-size: 1.4rem;
+            }
+        }
+        ul{ 
+            display: flex;
+            flex-direction: column;
+            align-content: space-around;
+            justify-content: space-around;
+            width: 40%;
+            height: inherit;
+            list-style: none;
+            li{
+                display: flex;
+                width: 100%;
+                gap: 5%;
+                img{
+                    width: 35px;
+                    height: 35px;
+                    width: 20%;
+                }
+                h5{
+                    margin: 0;
+                    font-size: 1.1rem;
+                }
+                div{
+                    width: 75%;
+                }
+                div > div{
+                    display: flex;
+                    justify-content: space-between;
+                }
+                p{
+                    margin: 0;
+                    font-size: .8rem;
+                    color: #AB9F9F;
+                }
+            }
+        }
+    }
+    .chart{
+        max-width: 100%;
+        height: 74%;
+    } 
+}
+
 .market-container{
     h3{
         padding: 1% 0 1% 0 ;
@@ -10,7 +154,6 @@
         width: 100%;
         height: 200px;
         padding: 0;
-        
     }
 }
 
@@ -26,7 +169,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        margin: 2%;
+        margin: 2%; /* don't change */
         height: 20%;
         img{
             width: 35px;
@@ -61,5 +204,6 @@
     to {
         filter: brightness(100%);
         scale: 1.05;
+        box-shadow: 0px 0px 20px #4EFF9F;
     }
 }
