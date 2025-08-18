@@ -5,91 +5,52 @@ import { NAME_BY_SYMBOL } from "../settings.js";
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 const CACHE_KEY = 'cryptoRates';
 
-export const getCryptoRates = () => {
-    document.querySelector(".modal-loader").classList.add("active");
+export const getCryptoRates = async () => {
+    const loader = document.querySelector(".modal-loader");
+    loader?.classList.add("active");
 
-    const coins = "btc";
+    const coins = "btc,eth,trx,doge";
     const include_market_cap = "true";
     const include_24hr_vol = "true";
     const include_24hr_change = "true";
     const include_last_updated_at = "true";
+    const url =
+    URL +
+    `simple/price?symbols=${coins}&vs_currencies=usd` +
+    `&include_market_cap=true&include_24hr_vol=true` +
+    `&include_24hr_change=true&include_last_updated_at=true&precision=2`;
 
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-        const parsed = JSON.parse(cached);
-        if (Date.now() - parsed.timestamp < CACHE_TTL) {
-            console.log("Use data from localStorage");
-            parsed.data.forEach(showCryptoRates);
-            document.querySelector(".modal-loader").classList.remove("active");
-            return;
+    try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.timestamp < CACHE_TTL) {
+                console.log("Use data from localStorage");
+                return parsed.data;
+            }
         }
-    }
-    //&include_tokens=all
-    // req(URL+`simple/price?vs_currencies=usd&symbols=${coins}
-    //     &include_market_cap=${include_market_cap}
-    //     &include_24hr_vol=${include_24hr_vol}
-    //     &include_24hr_change=${include_24hr_change}
-    //     &include_last_updated_at=${include_last_updated_at}
-    //     &precision=2`)
-    // `simple/price?vs_currencies=usd&symbols=btc%2Ceth%2Cdoge&include_tokens=all
-    // &include_market_cap=true&include_24hr_vol=true
-    // &include_24hr_change=true&include_last_updated_at=true
-    // &precision=2`)
-    // ids=bitcoin,ethereum,tron
-    req(URL+
-        'simple/price?symbols=btc%2Ceth%2Ctrx&vs_currencies=usd' +
-        '&include_market_cap=true&include_24hr_vol=true' +
-        '&include_24hr_change=true&include_last_updated_at=true&precision=2')
-    .then((data)=>{
+
+        const data = await req(url);
         console.log("Fetched:", data);
 
         const arr = Object.entries(data).map(([symbol, values]) => ({
             symbol,
-            name: NAME_BY_SYMBOL[symbol] || symbol.toUpperCase(),
+            name: NAME_BY_SYMBOL[symbol.toUpperCase()] || symbol.toUpperCase(),
             ...values
         }));
 
-        // if (Array.isArray(data) && data.length > 0) {
         localStorage.setItem(CACHE_KEY, JSON.stringify({
             timestamp: Date.now(),
             data: arr
         }));
-        arr.forEach(showCryptoRates);
-        // }
-    })
-    .catch((error) => {
+        return arr;
+    } catch (error) {
         console.log("Fetch error:", error);
-    })
-    .finally(() => {
-        document.querySelector(".modal-loader").classList.remove("active");
-    });
+        return [];
+    } finally {
+        loader?.classList.remove("active");
+    }
 }
-
-function showCryptoRates(obj) {
-    const { symbol, name, usd, usd_market_cap, usd_24h_vol, usd_24h_change, last_updated_at } = obj;
-   
-    const updatedAt = last_updated_at
-    ? new Date(last_updated_at * 1000).toLocaleString()
-    : '-';  
-
-    const pattern = `
-        <tr>
-            <td>${symbol.toUpperCase()}</td>
-            <td><h3>${name}</h3></td>
-            <td>${usd_24h_vol != null ? Number(usd_24h_vol).toLocaleString() : '-'}</td>
-            <td>${usd_24h_change != null 
-                    ? usd_24h_change.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %' 
-                    : '-'}</td>
-            <td><h3>${usd != null ? "$ " + Number(usd).toLocaleString() : '-'}</h3><div>Details</div></td>
-            <td><h4>⭐ ${usd_market_cap != null ? Number(usd_market_cap).toLocaleString() : '-'}</h4></td>
-            <td>${updatedAt}</td>
-        </tr>
-    `;
-    document.querySelector(".cryptoRatesBody").insertAdjacentHTML('beforeend', pattern)
-}
-
-// getCryptoRates();
-document.querySelector("#getCryptoRates").addEventListener("click", getCryptoRates)
 
 // (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
 // 0
