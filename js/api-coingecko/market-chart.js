@@ -2,13 +2,9 @@ import { URL, req } from "./main.js";
 
 import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@8/+esm';
 
-import { showLineChart } from "../charts/lineChart.js";
-
 const DB_NAME = 'cryptoDB';
 const STORE_NAME = 'marketChart';
 const CACHE_TTL = 24 * 60 * 60 * 1000;
-
-// -------------------- MARKET CHART --------------------
 
 async function initDB() {
     return openDB(DB_NAME, 1, {
@@ -20,88 +16,39 @@ async function initDB() {
     });
 }
 
-export const getMarketChart = async () => {
-    document.querySelector(".modal-loader").classList.add("active")
+// -------------------- GET MARKET CHART --------------------
+export const getMarketChart = async (coin) => {
+    const loader = document.querySelector(".modal-loader");
+    loader?.classList.add("active");
+
     const db = await initDB();
 
     const count = 30;
     const interval = "daily"; // daily, hourly, 5m
-    const coins = ["bitcoin", "ethereum", "tron"]
 
-    const promises = coins.map(async (coin) => {
+    try {
         const cached = await db.get(STORE_NAME, coin);
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-            console.log(`Use ${coin} from IndexedDB`);
-            renderMarketChart(cached.data, coin);
-            return;
+            console.log(`Use ${coin} from IndexedDB`, cached);
+            return cached.data;
         }
 
-        return req(URL+`coins/${coin}/market_chart?vs_currency=usd&days=${count}&interval=${interval}&precision=2`)
-            .then((data)=>{
-                console.log(`${coin} fresh data`, data);
-                db.put(STORE_NAME, { id: coin, timestamp: Date.now(), data: data });
-                renderMarketChart(data, coin);
-            })
-            .catch((error) => {
-                console.error("Fetch error:", error);
-                document.querySelector(".modal-loader").classList.remove("active")
-            });
-    });
+        const data = req(URL+`coins/${coin}/market_chart?vs_currency=usd&days=${count}&interval=${interval}&precision=2`);
+        console.log(`${coin} fresh data`, data);
 
-    await Promise.all(promises);
-    document.querySelector(".modal-loader").classList.remove("active");
-}
-
-function renderMarketChart(data, coin) {
-    const curPrice = document.querySelector(`#curPrice-${coin}`);
-    const curDif = document.querySelector(`#curDif-${coin}`);
-    curPrice.innerHTML = '';
-    curDif.innerHTML = '';
-    
-    const lastPriceIndex = data.prices.length - 1;
-    const lastPrice = data.prices[lastPriceIndex]?.[1];
-
-    curPrice.insertAdjacentHTML('beforeend', "$ " + lastPrice.toLocaleString());
-
-    const difference = (lastPrice - data.prices[lastPriceIndex - 1]?.[1]) 
-                    / data.prices[lastPriceIndex - 1]?.[1] * 100; 
-    
-    const span = document.createElement("span");
-    span.textContent = difference.toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    }) + " %";
-
-    if (difference > 0) {
-        span.style.color = "#2FA15D";
-        span.style.textShadow = "0 0 5px #2FA15D";
-        span.insertAdjacentHTML('afterbegin',
-            '<svg class="icon" style="filter: drop-shadow(0px 0px 5px #2FA15D)"><use href="../assets/icons/arrow-up-right.svg"></use></svg>')
-    } else if (difference < 0) {
-        span.style.color = "#A13D2F";
-        span.style.textShadow = "0 0 5px #A13D2F";
-        span.insertAdjacentHTML('afterbegin',
-            '<svg class="icon" style="filter: drop-shadow(0px 0px 5px #A13D2F)"><use href="../assets/icons/arrow-down-left.svg"></use></svg>')
-    } else {    
-        span.style.color = "gray";
-        span.style.textShadow = "0 0 5px gray";
+        db.put(STORE_NAME, { 
+            id: coin, 
+            timestamp: Date.now(), 
+            data: data
+        });
+        return data.data;
+    } catch (error) {
+        console.log("Fetch error:", error);
+        return [];
+    } finally {
+        loader?.classList.remove("active");
     }
-
-    curDif.appendChild(span);
-
-    let dataset = data.prices.map(([timestamp, price]) => ({
-        x: new Date(timestamp).toLocaleDateString(),
-        y: price
-    }));
-
-    const colors = {
-        bitcoin: "#FFA800",
-        ethereum: "#3A6FF8", //"#00ADEF",
-        tron: "#FF073A"
-    };
-    showLineChart(dataset, colors[coin], coin)
 }
-
 
 // document.querySelector("#getMarketChart").addEventListener("click", getMarketChart)
 
@@ -166,8 +113,3 @@ function renderMarketChart(data, coin) {
 //     ]
 //   ]
 // }
-
-// fetch(URL+'coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily&precision=2', options)
-//   .then(res => res.json())
-//   .then(res => console.log(res))
-//   .catch(err => console.error(err));
