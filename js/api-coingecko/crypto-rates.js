@@ -1,17 +1,9 @@
 import { URL, req } from "./main.js";
+import { NAME_BY_SYMBOL } from "../settings.js";
 
 // -------------------- CRYPTO RATES --------------------
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 const CACHE_KEY = 'cryptoRates';
-
-const NAME_BY_SYMBOL = { 
-    btc: 'Bitcoin',
-    eth: 'Ethereum',
-    trx: 'Tron',
-    doge: 'Dogecoin',
-    usdt: 'Tether',
-
- };
 
 export const getCryptoRates = () => {
     document.querySelector(".modal-loader").classList.add("active");

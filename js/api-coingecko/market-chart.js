@@ -96,13 +96,12 @@ function renderMarketChart(data, coin) {
 
     const colors = {
         bitcoin: "#FFA800",
-        ethereum: "#00ADEF",
+        ethereum: "#3A6FF8", //"#00ADEF",
         tron: "#FF073A"
     };
     showLineChart(dataset, colors[coin], coin)
 }
 
-getMarketChart()
 
 // document.querySelector("#getMarketChart").addEventListener("click", getMarketChart)
 
