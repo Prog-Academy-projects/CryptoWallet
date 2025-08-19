@@ -1,43 +1,15 @@
-import { showLineChart } from "./charts/lineChart.js";
+import { COINS, COINS_BY_ID, COINS_BY_SYMBOL } from "./settings.js";
+
+import { renderLineChart } from "./charts/lineChart.js";
 
 import { getCryptoRates } from "./api-coingecko/crypto-rates.js";
 import { getMarketChart } from "./api-coingecko/market-chart.js";
-
-import { COINS, COINS_BY_ID, COINS_BY_SYMBOL } from "./settings.js";
 
 
 // ------------ TEST DATA ------------
 const coins_get_rate = "btc,eth,trx,xrp,ltc,doge,usdt"; // TO STORE in LocalStorage
 const coins_rate = "btc,eth,trx"; // To show rate
 const coins_for_market_chart = ["bitcoin", "ethereum", "tron", "ripple", "litecoin", "dogecoin"] // To show chart - ONLY NAME IN LOWER CASE
-
-
-// ------------ RENDER RATES ------------
-export async function renderRates() {
-    const rates = await getCryptoRates(coins_get_rate);
-    rates.forEach((obj) => {
-        const { symbol, name, usd, usd_market_cap, usd_24h_vol, usd_24h_change, last_updated_at } = obj;
-   
-        const updatedAt = last_updated_at
-        ? new Date(last_updated_at * 1000).toLocaleString()
-        : '-';  
-
-        const pattern = `
-            <tr>
-                <td>${symbol.toUpperCase()}</td>
-                <td><h3>${name}</h3></td>
-                <td>${usd_24h_vol != null ? Number(usd_24h_vol).toLocaleString() : '-'}</td>
-                <td>${usd_24h_change != null 
-                        ? usd_24h_change.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' %' 
-                        : '-'}</td>
-                <td><h3>${usd != null ? "$ " + Number(usd).toLocaleString() : '-'}</h3><div>Details</div></td>
-                <td><h4>⭐ ${usd_market_cap != null ? Number(usd_market_cap).toLocaleString() : '-'}</h4></td>
-                <td>${updatedAt}</td>
-            </tr>
-        `;
-        document.querySelector(".cryptoRatesBody").insertAdjacentHTML('beforeend', pattern)
-    });
-}
 
 
 // ------------ RENDER MARKET CHART ------------
@@ -58,9 +30,19 @@ export async function renderMarketChart() {
         let i = 0;
         for (i in rates){
             if (symbol == rates[i].symbol){
-                console.log("Rate: ", rates[i])
-                
+                // console.log("Rate: ", rates[i])
+                const data = await getMarketChart(coin_id)
+                const lastPriceIndex = data.prices.length - 1;
+                const lastPrice = data.prices[lastPriceIndex]?.[1];
+                // ------ displaying lastPrice from Coin Rate
+                //rates[i].usd.toLocaleString()
+                //lastPrice.toLocaleString()
+
+                // ------ displaying lastPrice from Coin Rate
                 const differ = rates[i].usd_24h_change?.toFixed(2) ?? "0";
+                // ------ displaying difference from Coin History (today-yesterday)
+                const difference = (lastPrice - data.prices[lastPriceIndex - 1]?.[1]) 
+                / data.prices[lastPriceIndex - 1]?.[1] * 100
 
                 const span = document.createElement("span");
                 span.textContent = differ.toLocaleString('en-US', {
@@ -85,15 +67,6 @@ export async function renderMarketChart() {
                     span.style.color = "gray";
                     span.style.textShadow = "0 0 5px gray";
                 }
-
-                const data = await getMarketChart(coin_id)
-                const lastPriceIndex = data.prices.length - 1;
-                const lastPrice = data.prices[lastPriceIndex]?.[1];
-                //lastPrice.toLocaleString()
-                //rates[i].usd.toLocaleString()
-
-                // const difference = (lastPrice - data.prices[lastPriceIndex - 1]?.[1]) 
-                // / data.prices[lastPriceIndex - 1]?.[1] * 100; 
 
                 const item = `
                     <li class="chart-container ${coin_id}">
@@ -121,13 +94,12 @@ export async function renderMarketChart() {
 
                 list.insertAdjacentHTML("beforeend", item);
 
-
                 let dataset = data.prices.map(([timestamp, price]) => ({
                     x: new Date(timestamp).toLocaleDateString(),
                     y: price
                 }));
 
-                showLineChart(dataset, color, coin_id)
+                renderLineChart(dataset, color, coin_id)
             }
         }
     })

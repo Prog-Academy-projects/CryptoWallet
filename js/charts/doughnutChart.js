@@ -1,13 +1,18 @@
+import { COINS } from "../settings.js";
+
 let chartInstance = null;
 
-export const showDoughnutChart = (labels, balances) => {
+export const renderDoughnutChart = (labels, balances) => {
+    const backgroundColors = labels.map(coin => COINS[coin].color);
+
     const data = {
         labels,
         datasets: [{
             data: balances,
             // backgroundColor: ["#FF9900", "#3C3CFF", "#27AE60"],
             // backgroundColor: ["#DBD42B", "#38B5DC", "#129B28"],
-            backgroundColor: ["#FFA800", "#38B5DC", "#129B28"],
+            // backgroundColor: ["#FFA800", "#38B5DC", "#129B28"],
+            backgroundColor: backgroundColors,
 
             borderWidth: 1,
             borderColor: "#000000"
@@ -34,7 +39,9 @@ export const showDoughnutChart = (labels, balances) => {
         animation: true,
         responsive: true,
         plugins: {
-            legend: { display: false },
+            legend: { 
+                display: false,
+            },
             tooltip: {
                 callbacks: {
                     label: function(context) {

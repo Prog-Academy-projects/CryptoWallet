@@ -47,7 +47,7 @@ export const getCryptoRates = async (coins) => {
         loader?.classList.remove("active");
     }
 }
-
+// ---- DRAFT -------
 export const getRateBySymbol = async (coin) => {
     const loader = document.querySelector(".modal-loader");
     loader?.classList.add("active");

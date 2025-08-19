@@ -301,7 +301,7 @@
                     </div> 
                 </div> 
             </div>
-            <nav class="balance-container">
+            <nav class="main-container">
                 <ul>
                     <li class="balance">
                         <nav>
@@ -332,45 +332,15 @@
                             </div>
                         </nav>
                     </li>
-                    <li class="currencies">
+                    <li class="wallet">
                         <nav>
                             <div>
-                                <h4 class="poppins-regular">Currencies</h4>
+                                <h4 class="poppins-regular">My Wallet</h4>
                                 <div class="chart">
                                     <canvas id="doughnutChart"></canvas>
                                 </div>
                             </div> 
-                            <ul>
-                                <li>
-                                    <img src="../assets/img/eth.png" alt="ethereum">
-                                    <div>
-                                        <h5 class="poppins-medium">Ethereum</h5>
-                                        <div>
-                                            <p>ETH</p>  
-                                            <p class="poppins-regular difference-style" id="curDif-eth">1</p> 
-                                        </div>
-                                    </div> 
-                                </li>
-                                <li>
-                                    <img src="../assets/img/btc.png" alt="bitcoin">
-                                    <div>
-                                        <h5 class="poppins-medium">Bitcoin</h5>
-                                        <div>
-                                            <p>BTC</p>  
-                                            <p class="poppins-regular difference-style" id="curDif-btc">1</p> 
-                                        </div>
-                                    </div> 
-                                </li>
-                                <li>
-                                    <img src="../assets/img/usdt.png" alt="tether">
-                                    <div>
-                                        <h5 class="poppins-medium">Tether</h5>
-                                        <div>
-                                            <p>USDT</p>  
-                                            <p class="poppins-regular difference-style" id="curDif-usdt">1</p> 
-                                        </div>
-                                    </div> 
-                                </li>
+                            <ul id="walletСoins" class="wallet-coins">
                             </ul>
                         </nav>
                     </li>
@@ -378,56 +348,6 @@
             </nav>
             <nav class="market-container">
                 <h3 class="h4 poppins-medium">Market</h3> 
-                <!-- <ul>
-                    <li class="chart-container bitcoin">
-                        <nav>
-                            <img src="../assets/img/bitcoin.png" alt="bitcoin">
-                            <div>
-                                <h4 class="poppins-regular">Bitcoin</h4>
-                                <h5 class="poppins-regular" id="curPrice-bitcoin"></h5>
-                            </div>
-                            <div>
-                                <p>BTC</p>
-                                <p class="poppins-regular difference-style" id="curDif-bitcoin"></p>
-                            </div> 
-                        </nav>
-                        <div class="line-chart">
-                            <canvas id="lineChart-bitcoin"></canvas>
-                        </div>
-                    </li>
-                    <li class="chart-container">
-                        <nav>
-                            <img src="../assets/img/ethereum.png" alt="ethereum">
-                            <div>
-                                <h4 class="poppins-regular">Ethereum</h4>
-                                <h5 class="poppins-regular" id="curPrice-ethereum"></h5>
-                            </div> 
-                            <div>
-                                <p>ETH</p>  
-                                <p class="poppins-regular difference-style" id="curDif-ethereum"></p>    
-                            </div>
-                        </nav>
-                        <div class="line-chart">
-                            <canvas id="lineChart-ethereum"></canvas>
-                        </div>
-                    </li>
-                    <li class="chart-container">
-                        <nav>
-                            <img src="../assets/img/tron.png" alt="tron">
-                            <div>
-                                <h4 class="poppins-regular">Tron</h4>
-                                <h5 class="poppins-regular" id="curPrice-tron"></h5>
-                            </div>
-                            <div>
-                                <p>TRX</p>
-                                <p class="poppins-regular difference-style" id="curDif-tron"></p>
-                            </div>
-                        </nav>
-                        <div class="line-chart">
-                            <canvas id="lineChart-tron"></canvas>
-                        </div>
-                    </li>
-                </ul> -->
                 <ul id="cryptoList" class="crypto-list">
                 </ul>
             </nav>

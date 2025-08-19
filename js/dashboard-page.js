@@ -1,5 +1,5 @@
-import { renderBalanceChart } from "./wallet.js";
-import { renderRates, renderMarketChart } from "./dashboard-market.js";
+import { renderBalanceChart, renderWalletCoins} from "./dashboard-wallet.js";
+import { renderMarketChart } from "./dashboard-market.js";
 
 
 // ------------ TEST DATA ------------
@@ -35,12 +35,9 @@ const test_data = {
 
 document.addEventListener("DOMContentLoaded", () => {
     renderBalanceChart();
-    // renderCryptoList(test_data);
-    // renderRates();
+    renderWalletCoins();
     renderMarketChart();
 });
-
-// document.querySelector("#getCryptoRates").addEventListener("click", renderRates)
 
 export function renderCryptoList(data) {
     const list = document.getElementById("cryptoList");

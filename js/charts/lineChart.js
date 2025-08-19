@@ -1,6 +1,6 @@
 let charts = {};
 
-export const showLineChart = (inputData, inputColor, coin) => {
+export const renderLineChart = (inputData, inputColor, coin) => {
     const options = {
         animation: true,
         responsive: true,
