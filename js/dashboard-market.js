@@ -75,7 +75,7 @@ export async function renderMarketChart() {
                             <div>
                                 <h4 class="poppins-regular">${name}</h4>
                                 <h5 class="poppins-regular" id="curPrice-${symbol}">
-                                    $${lastPrice.toLocaleString()}
+                                    $ ${lastPrice.toLocaleString()}
                                 </h5>
                             </div>
                             <div>

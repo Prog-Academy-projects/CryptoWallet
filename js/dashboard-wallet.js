@@ -75,8 +75,10 @@ export function renderWalletCoins() {
         list.insertAdjacentHTML('beforeend', pattern)
     });
 
-    // const pattern = `
-    //         <p>${total_usd_balance.toLocaleString()}</p>
-    //     `;
-    //     tbody.insertAdjacentHTML('beforeend', pattern)
+    const curBalance = document.getElementById("curBalance");
+    curBalance.innerHTML = "";
+    const pattern = `
+        <p>$ ${total_usd_balance.toLocaleString()}</p>
+    `;
+    curBalance.insertAdjacentHTML('beforeend', pattern)
 }
