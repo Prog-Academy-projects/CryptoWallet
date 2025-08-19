@@ -1,5 +1,4 @@
 import { URL, req } from "./main.js";
-
 import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@8/+esm';
 
 const DB_NAME = 'cryptoDB';
@@ -29,19 +28,19 @@ export const getMarketChart = async (coin) => {
     try {
         const cached = await db.get(STORE_NAME, coin);
         if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
-            console.log(`Use ${coin} from IndexedDB`, cached);
+            // console.log(`Use ${coin} from IndexedDB`, cached);
             return cached.data;
         }
 
-        const data = req(URL+`coins/${coin}/market_chart?vs_currency=usd&days=${count}&interval=${interval}&precision=2`);
+        const data = await req(URL+`coins/${coin}/market_chart?vs_currency=usd&days=${count}&interval=${interval}&precision=2`);
         console.log(`${coin} fresh data`, data);
 
-        db.put(STORE_NAME, { 
+        await db.put(STORE_NAME, { 
             id: coin, 
             timestamp: Date.now(), 
             data: data
         });
-        return data.data;
+        return data;
     } catch (error) {
         console.log("Fetch error:", error);
         return [];

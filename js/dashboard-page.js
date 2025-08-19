@@ -1,7 +1,6 @@
 import { renderBalanceChart } from "./wallet.js";
 import { renderRates, renderMarketChart } from "./dashboard-market.js";
 
-import { NAME_BY_SYMBOL, SYMBOL_BY_NAME, ICON_BY_SYMBOL, COLOR_BY_SYMBOL } from "./settings.js";
 
 // ------------ TEST DATA ------------
 const test_data = { 
@@ -41,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMarketChart();
 });
 
-document.querySelector("#getCryptoRates").addEventListener("click", renderRates)
+// document.querySelector("#getCryptoRates").addEventListener("click", renderRates)
 
 export function renderCryptoList(data) {
     const list = document.getElementById("cryptoList");
