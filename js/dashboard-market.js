@@ -3,10 +3,13 @@ import { showLineChart } from "./charts/lineChart.js";
 import { getCryptoRates } from "./api-coingecko/crypto-rates.js";
 import { getMarketChart } from "./api-coingecko/market-chart.js";
 
+import { COINS, COINS_BY_ID, COINS_BY_SYMBOL } from "./settings.js";
+
 
 // ------------ TEST DATA ------------
-const coins_get_rate = "btc,eth,trx,xrp,ltc,usdt,doge";
-const coins_to_display = ["bitcoin", "ethereum", "tron"]
+const coins_get_rate = "btc,eth,trx,xrp,ltc,doge,usdt"; // TO STORE in LocalStorage
+const coins_rate = "btc,eth,trx"; // To show rate
+const coins_for_market_chart = ["bitcoin", "ethereum", "tron", "ripple", "litecoin", "dogecoin"] // To show chart - ONLY NAME IN LOWER CASE
 
 
 // ------------ RENDER RATES ------------
@@ -36,56 +39,96 @@ export async function renderRates() {
     });
 }
 
+
 // ------------ RENDER MARKET CHART ------------
-export async function renderMarketChart() { //data, coin
-    coins_to_display.forEach(async (coin) => {
-        const data = await getMarketChart(coin);
-        const curPrice = document.querySelector(`#curPrice-${coin}`);
-        const curDif = document.querySelector(`#curDif-${coin}`);
-        curPrice.innerHTML = '';
-        curDif.innerHTML = '';
+export async function renderMarketChart() {
+    const rates = await getCryptoRates(coins_get_rate);
+
+    const list = document.getElementById("cryptoList");
+    list.innerHTML = "";
+    coins_for_market_chart.forEach(async (coin_id) => {
         
-        const lastPriceIndex = data.prices.length - 1;
-        const lastPrice = data.prices[lastPriceIndex]?.[1];
+        console.log(COINS_BY_ID[coin_id])
+        const name = COINS_BY_ID[coin_id].name || "Solana";
+        const symbol = COINS_BY_ID[coin_id].symbol || "sol";
+        const upper_symbol = symbol.toUpperCase(); 
+        const icon = COINS_BY_ID[coin_id].icon || "../assets/img/solana.png";
+        const color = COINS_BY_ID[coin_id].color || "#999";
 
-        curPrice.insertAdjacentHTML('beforeend', "$ " + lastPrice.toLocaleString());
+        let i = 0;
+        for (i in rates){
+            if (symbol == rates[i].symbol){
+                console.log("Rate: ", rates[i])
+                
+                const differ = rates[i].usd_24h_change?.toFixed(2) ?? "0";
 
-        const difference = (lastPrice - data.prices[lastPriceIndex - 1]?.[1]) 
-                        / data.prices[lastPriceIndex - 1]?.[1] * 100; 
-        
-        const span = document.createElement("span");
-        span.textContent = difference.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }) + " %";
+                const span = document.createElement("span");
+                span.textContent = differ.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }) + " %";
 
-        if (difference > 0) {
-            span.style.color = "#2FA15D";
-            span.style.textShadow = "0 0 5px #2FA15D";
-            span.insertAdjacentHTML('afterbegin',
-                '<svg class="icon" style="filter: drop-shadow(0px 0px 5px #2FA15D)"><use href="../assets/icons/arrow-up-right.svg"></use></svg>')
-        } else if (difference < 0) {
-            span.style.color = "#A13D2F";
-            span.style.textShadow = "0 0 5px #A13D2F";
-            span.insertAdjacentHTML('afterbegin',
-                '<svg class="icon" style="filter: drop-shadow(0px 0px 5px #A13D2F)"><use href="../assets/icons/arrow-down-left.svg"></use></svg>')
-        } else {    
-            span.style.color = "gray";
-            span.style.textShadow = "0 0 5px gray";
+                const green = "#2FA15D";
+                const red = "#A13D2F";
+
+                if (differ > 0) {
+                    span.style.color = `${green}`;
+                    span.style.textShadow = `0 0 5px ${green}`;
+                    span.insertAdjacentHTML('afterbegin',
+                        `<svg class="icon" style="filter: drop-shadow(0px 0px 5px ${green})"><use href="../assets/icons/arrow-up-right.svg"></use></svg>`)
+                } else if (differ < 0) {
+                    span.style.color = `${red}`;
+                    span.style.textShadow = `0 0 5px ${red}`;
+                    span.insertAdjacentHTML('afterbegin',
+                        `<svg class="icon" style="filter: drop-shadow(0px 0px 5px ${red})"><use href="../assets/icons/arrow-down-left.svg"></use></svg>`)
+                } else {    
+                    span.style.color = "gray";
+                    span.style.textShadow = "0 0 5px gray";
+                }
+
+                const data = await getMarketChart(coin_id)
+                const lastPriceIndex = data.prices.length - 1;
+                const lastPrice = data.prices[lastPriceIndex]?.[1];
+                //lastPrice.toLocaleString()
+                //rates[i].usd.toLocaleString()
+
+                // const difference = (lastPrice - data.prices[lastPriceIndex - 1]?.[1]) 
+                // / data.prices[lastPriceIndex - 1]?.[1] * 100; 
+
+                const item = `
+                    <li class="chart-container ${coin_id}">
+                        <nav>
+                            <img src="${icon}" alt="${coin_id}">
+                            <div>
+                                <h4 class="poppins-regular">${name}</h4>
+                                <h5 class="poppins-regular" id="curPrice-${symbol}">
+                                    $${lastPrice.toLocaleString()}
+                                </h5>
+                            </div>
+                            <div>
+                                <p>${upper_symbol}</p>
+                                <p class="poppins-regular difference-style" 
+                                   id="curDif-${symbol}">
+                                </p>
+                                ${span.outerHTML}
+                            </div> 
+                        </nav>
+                        <div class="line-chart">
+                            <canvas id="lineChart-${coin_id}"></canvas>
+                        </div>
+                    </li>
+                `;
+
+                list.insertAdjacentHTML("beforeend", item);
+
+
+                let dataset = data.prices.map(([timestamp, price]) => ({
+                    x: new Date(timestamp).toLocaleDateString(),
+                    y: price
+                }));
+
+                showLineChart(dataset, color, coin_id)
+            }
         }
-
-        curDif.appendChild(span);
-
-        let dataset = data.prices.map(([timestamp, price]) => ({
-            x: new Date(timestamp).toLocaleDateString(),
-            y: price
-        }));
-
-        const colors = {
-            bitcoin: "#FFA800",
-            ethereum: "#3A6FF8", //"#00ADEF",
-            tron: "#FF073A"
-        };
-        showLineChart(dataset, colors[coin], coin)
     })
 }
