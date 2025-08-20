@@ -9,6 +9,8 @@ const wallet = getWallet();
 const cached = localStorage.getItem('cryptoRates');
 const dataRates = JSON.parse(cached).data;
 
+let total_usd_balance = 0;
+
 export function renderBalanceChart() {
     const labels = Object.keys(wallet);
     const balances = Object.entries(wallet).map(([coin, amount]) => {
@@ -21,8 +23,6 @@ export function renderBalanceChart() {
 export function renderWalletCoins() {
     const list = document.getElementById("walletСoins");
     list.innerHTML = "";
-
-    let total_usd_balance = 0;
 
     Object.entries(wallet).forEach(([coin, balance]) => {
         const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
@@ -75,6 +75,10 @@ export function renderWalletCoins() {
         list.insertAdjacentHTML('beforeend', pattern)
     });
 
+    renderBalance();
+}
+
+export function renderBalance() {
     const curBalance = document.getElementById("curBalance");
     curBalance.innerHTML = "";
     const pattern = `
