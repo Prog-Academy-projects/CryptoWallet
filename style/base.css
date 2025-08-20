@@ -35,9 +35,10 @@ body{
 }
 
 .right-panel{
-    width: 78.9%;
     background:#000000;
-    padding: 0 1% 0 0;
+    width: 78.9%;
+    padding-left: 2%;
+    padding-right: 4%;
 }
 
 .icon{

@@ -1,6 +1,7 @@
 import { COINS } from "./settings.js";
 
 import { renderDoughnutChart } from "./charts/doughnutChart.js";
+import { createSpan } from "./differ-span.js";
 
 import { getCryptoRates } from "./api-coingecko/crypto-rates.js";
 
@@ -22,6 +23,13 @@ const prices = {
     USDT: 1
 };
 
+const wallet = getWallet();
+const cached = localStorage.getItem('cryptoRates');
+const dataRates = JSON.parse(cached).data;
+
+let total_usd_balance = 0;
+let total_usd_balance_diff = 0;
+
 export function getWallet() {
     const walletData = localStorage.getItem(CACHE_KEY);
     return walletData ? JSON.parse(walletData) : defaultWallet;
@@ -31,7 +39,78 @@ function saveWallet(wallet) {
     localStorage.setItem(CACHE_KEY, JSON.stringify(wallet));
 }
 
-export function renderWalletTable() {
+export function renderWalletCoins() {
+    const list = document.getElementById("walletСoins");
+    list.innerHTML = "";
+
+    Object.entries(wallet).forEach(([coin, balance]) => {
+        const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
+        const usd_balance = coinRate.usd*balance
+        const usd_balance_2 =  usd_balance.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        total_usd_balance += usd_balance;
+
+        const usd_balance_diff = usd_balance*coinRate.usd_24h_change/100;
+        total_usd_balance_diff += usd_balance_diff;
+
+        console.log(COINS[coin])
+        const name = COINS[coin].name || "Solana";
+        const symbol = COINS[coin].symbol || "sol";
+        const coin_id = COINS[coin].id || "solana"; 
+        const icon = COINS[coin].icon || "../assets/img/solana.png";
+
+
+
+        const differ = coinRate.usd_24h_change?.toFixed(2) ?? "0";
+        const span = createSpan(differ);
+
+        const pattern = `
+            <li>
+                <img src="${icon}" alt="${coin_id}">
+                <div>
+                    <h5 class="poppins-medium">${name}</h5>
+                    <p class="poppins-regular" id="curPrice-${symbol}">$ ${coinRate.usd.toLocaleString()}</p>
+                </div>
+                <div>
+                    <p>${coin}</p>  
+                    <p class="poppins-regular difference-style" id="curDif-${symbol}">${span.outerHTML}</p> 
+                </div>
+                <div>
+                    <h5 class="poppins-medium">${balance}</h5>
+                    <p class="poppins-regular" id="totalPrice-${symbol}">$ ${usd_balance_2}</p>
+                </div>
+            </li>
+        `;
+        list.insertAdjacentHTML('beforeend', pattern)
+    });
+
+    renderBalance();
+}
+
+export function renderBalance() {
+    const curBalance = document.getElementById("curBalance");
+    curBalance.innerHTML = "";
+    const pattern_curBalance = `
+        <p>$ ${total_usd_balance.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p>
+    `;
+    curBalance.insertAdjacentHTML('beforeend', pattern_curBalance);
+    
+    const curDifBalance = document.getElementById("curDifBalance");
+    curDifBalance.innerHTML = "";
+
+    const span = createSpan(0.2);
+    const pattern_curDifBalance = `
+        <p>$ ${total_usd_balance_diff.toFixed(2)}(${span.outerHTML})</p>
+    `;
+    curDifBalance.insertAdjacentHTML('beforeend', pattern_curDifBalance);
+}
+
+function renderWalletTable() { // OLD initial version
     const wallet = getWallet();
     const tbody = document.querySelector(".walletBody");
     tbody.innerHTML = "";

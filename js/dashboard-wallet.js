@@ -1,6 +1,7 @@
 import { COINS, COINS_BY_ID, COINS_BY_SYMBOL } from "./settings.js";
 
 import { renderDoughnutChart } from "./charts/doughnutChart.js";
+import { createSpan } from "./differ-span.js";
 
 import { getWallet } from "./wallet.js";
 
@@ -11,6 +12,7 @@ const dataRates = JSON.parse(cached).data;
 
 let total_usd_balance = 0;
 
+// ------------- render Balance Chart -----------------
 export function renderBalanceChart() {
     const labels = Object.keys(wallet);
     const balances = Object.entries(wallet).map(([coin, amount]) => {
@@ -20,6 +22,7 @@ export function renderBalanceChart() {
     renderDoughnutChart(labels, balances);
 }
 
+// ------------- render Wallet Coins -----------------
 export function renderWalletCoins() {
     const list = document.getElementById("walletСoins");
     list.innerHTML = "";
@@ -36,29 +39,7 @@ export function renderWalletCoins() {
         const icon = COINS[coin].icon || "../assets/img/solana.png";
 
         const differ = coinRate.usd_24h_change?.toFixed(2) ?? "0";
-        const span = document.createElement("span");
-        span.textContent = differ.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }) + "%";
-
-        const green = "#2FA15D";
-        const red = "#A13D2F";
-
-        if (differ > 0) {
-            span.style.color = `${green}`;
-            span.style.textShadow = `0 0 5px ${green}`;
-            span.insertAdjacentHTML('afterbegin',
-                `<svg class="icon" style="filter: drop-shadow(0px 0px 5px ${green})"><use href="../assets/icons/arrow-up-right.svg"></use></svg>`)
-        } else if (differ < 0) {
-            span.style.color = `${red}`;
-            span.style.textShadow = `0 0 5px ${red}`;
-            span.insertAdjacentHTML('afterbegin',
-                `<svg class="icon" style="filter: drop-shadow(0px 0px 5px ${red})"><use href="../assets/icons/arrow-down-left.svg"></use></svg>`)
-        } else {    
-            span.style.color = "gray";
-            span.style.textShadow = "0 0 5px gray";
-        }
+        const span = createSpan(differ);
 
         const pattern = `
             <li class="wallet-coin">
@@ -78,6 +59,7 @@ export function renderWalletCoins() {
     renderBalance();
 }
 
+// ------------- render Balance -----------------
 export function renderBalance() {
     const curBalance = document.getElementById("curBalance");
     curBalance.innerHTML = "";

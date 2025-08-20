@@ -1,12 +1,10 @@
+
 .main-container{
-    h3{
-        padding: 1% 0 1% 0 ;
-    }
     ul{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 100%;
         height: 210px;
         padding: 0;
@@ -38,6 +36,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            width: 50%;
             height: 100%;
             gap: 20%;
         }
@@ -45,21 +44,34 @@
             margin: 0;
             font-size: 1.4rem;
         }
+        .balance-diff{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            height: 100%;
+            width: 50%;
+        }
         .difference-style {
             font-size: 0.9rem;
             font-weight: 600;
-            color: greenyellow;
+            color: gray;
+            padding-right: 1vw;
         }
     }
     nav:last-child{
         justify-content:  flex-start;
-        gap: 20%;
+        /* gap: 10%; */
         .balance-details {
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100%;
             gap: 20%;
+            /* margin: 0 5% 0 5%; */
+        }
+        .income {
+            padding: 0 15% 0 8%;
         }
         .income h5 {
             margin: 0;
@@ -67,11 +79,12 @@
             svg{
                 color: #2FA15D;
                 filter: drop-shadow(0px 0px 5px #2FA15D);
+                padding-right: 2px;
             }
         }
         .expences {
             border-left: 1px solid #ffffff;
-            padding-left: 5%;
+            padding-left: 13%;
         }
         .expences h5{
             margin: 0;
@@ -79,6 +92,7 @@
             svg{
                 color: #A13D2F;
                 filter: drop-shadow(0px 0px 5px #A13D2F);
+                margin-right: 2px;
             }
         }
     }
@@ -105,6 +119,7 @@
             }
             .chart{
                 width: 100%;
+                margin: -5% 0 5% 0;
                 /* height: 74%; */
             } 
         }
@@ -158,12 +173,12 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 100%;
         height: 420px;
         padding: 0;
         margin: 0;
-        row-gap: 4%;
+        row-gap: 6%;
         /* overflow-y: auto; */
     }
 }
@@ -175,6 +190,7 @@
     height: 200px;
     border-radius: 10px;
     list-style: none;
+    padding: 1%;
     nav{
         display: flex;
         flex-direction: row;
@@ -193,6 +209,7 @@
         }
         div > p{
             margin: 0;
+            color: #AB9F9F;
         }
         .difference-style{
             font-size: 0.9rem;

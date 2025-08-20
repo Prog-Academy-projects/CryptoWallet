@@ -1,4 +1,4 @@
-import { renderWalletTable, renderBalanceChart,renderRates } from "./wallet.js";
+import { renderWalletCoins, renderBalanceChart,renderRates } from "./wallet.js";
 
 const test_data = { 
     btc: {
@@ -31,7 +31,7 @@ const test_data = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderWalletTable();
+    renderWalletCoins();
     renderBalanceChart();
 });
 

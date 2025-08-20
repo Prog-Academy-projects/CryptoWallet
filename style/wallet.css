@@ -1,17 +1,125 @@
-.crypto-list{
+.container{
+    background-color: #2A2A2D;
+    /* height: inherit; */
+    border-radius: 10px;
+    padding: 3%;
+}
+
+.balance {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 100%;
-    height: 200px;
-    padding: 0;
-    li{
-        width: 30%;
+    align-items: center;
+    width: 60%;
+    h4{
+
+    }
+    .balance-chart{
+        width: 200px;
+        height: 200px;
     }
 }
 
-.chart{
-    width: 200px;
-    height: 200px;
+.main-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2%;
+    h3{
+        padding: 20px 0 10px 0 ;
+    }
+    div{
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
 }
+
+.wallet{
+    width: 26vw;
+    .wallet-coins{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap; 
+        width: 100%;
+        height: 90%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow-y: auto;
+        gap: 15px;
+        li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            img{
+                width: 35px;
+                height: 35px;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+                h5{
+                    margin: 0;
+                    font-size: 1.2rem;
+                }
+                p{
+                    margin: 0;
+                    font-size: .9rem;
+                    color: #AB9F9F; 
+                }
+            }
+            div:first-of-type{
+                align-items: flex-start;
+                width: 30%;
+            }
+            div:last-child{
+                align-items: flex-end;
+                width: 25%;
+            }
+        }
+    }
+}
+
+.market{
+    width: 46vw;
+    .market-table {
+        display: grid;
+        grid-template-rows: auto;
+        row-gap: 8px;
+    }
+
+    .market-header, .market-row {
+        div:first-of-type{
+            padding-left: 5%;
+        }
+        display: grid;
+        grid-template-columns: 
+            0.5fr               /* # */
+            1fr                 /* Name */
+            0.5fr               /* Code */
+            1.5fr               /* Price */
+            1.5fr               /* Market Cap */
+            1.5fr               /* Volume(24h) */
+            1fr;                /* Changes(24h) */
+        align-items: center;
+    }
+
+    .market-header {
+        font-weight: bold;
+        border-top: 2px solid #333;
+        border-bottom: 2px solid #333;
+    }
+
+    .market-row {
+        padding-bottom: 1%;
+        border-bottom: 1px solid #333;
+    }
+}
+
