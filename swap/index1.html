@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dmytro Ivashchenko">
     <meta name="generator" content="Astro v5.9.2">
-    <title>Crypto Wallet - Dashboard page</title>
+    <title>Crypto Wallet - Exchange page</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
     <script src="../js/color-modes.js"></script>
     <script src="../js/authGuard.js"></script>
@@ -20,12 +20,11 @@
     <meta name="theme-color" content="#712cf9">
     <link rel="stylesheet" href="../style/sidebars.css">
     <link rel="stylesheet" href="../style/base.css">
-    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/swap.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/fonts.css">
-    <link rel="stylesheet" href="../style/modal-loader.css">
     <style>
         .bd-placeholder-img{
             font-size:1.125rem;
@@ -174,12 +173,12 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary left-panel" style="width: 280px;"> 
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> 
                 <img class="bi pe-none me-2" src="../assets/img/crypto-logo.svg" alt="" width="72" height="57" aria-hidden="true">
-                <span class="fs-4 poppins-medium">CryptoWallet</span> 
+                <span class="fs-4 poppins-medium">CryptoNite</span> 
             </a> 
             <hr> 
             <ul class="nav nav-pills flex-column mb-auto"> 
                 <li> 
-                    <a href="../dashboard/index.html" class="nav-link link-body-emphasis poppins-regular active-cw"> 
+                    <a href="../dashboard/index.html" class="nav-link link-body-emphasis poppins-regular"> 
                         <svg class="bi pe-none me-2" width="24" height="24" aria-hidden="true">
                             <use xlink:href="#speedometer2"></use>
                         </svg>
@@ -198,7 +197,7 @@
                     </a>
                 </li> 
                 <li> 
-                    <a href="../swap/index.html" class="nav-link link-body-emphasis poppins-regular"> 
+                    <a href="../swap/index.html" class="nav-link link-body-emphasis poppins-regular active-cw"> 
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-currency-exchange me-2" viewBox="0 0 16 16">
                             <path d="M0 5a5 5 0 0 0 4.027 4.905 6.5 6.5 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05q-.001-.07.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.5 3.5 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98q-.004.07-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5m16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0m-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674z"/>
                         </svg> -->
@@ -245,7 +244,7 @@
                 </ul> 
             </div> 
         </div> 
-        <div class="b-example-vr" style="background:#000000"></div> <!-- b-example-divider -->
+        <div class=" b-example-vr" style="background:#000000"></div> <!-- b-example-divider -->
         <!-- <div class="d-flex flex-column flex-shrink-0 bg-body-tertiary" style="width: 4.5rem;"> 
             <a href="/" class="d-block p-3 link-body-emphasis text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right"> 
                 <img class="bi pe-none" src="../assets/img/crypto-logo.svg" alt="" width="42" height="57">
@@ -303,71 +302,20 @@
         </div> -->
         <section class="col-md-9 ms-sm-auto col-lg-10 right-panel"> <!-- px-md-3 -->
             <!-- <h1>Dashboard</h1> -->
-            <div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-4 mb-0 "> 
-                <h1 class="h2 poppins-medium">Dashboard</h1> 
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-4 "> 
+                <h1 class="h2 poppins-medium">Swap</h1> 
                 <div class="btn-toolbar mb-2 mb-md-0"> 
-                    <div class="btn-group me-2 "> 
+                    <div class="btn-group me-2"> 
                     </div> 
                 </div> 
             </div>
-            <nav class="main-container">
-                <ul>
-                    <li class="balance">
-                        <nav>
-                            <div class="balance-info">
-                                <h4 class="poppins-regular">Balance</h4>
-                                <p class="poppins-regular" id="curBalance"></p>
-                            </div>
-                            <div class="balance-diff">
-                                <p class="poppins-regular difference-style" id="curDif-balance"> -0.82 %</p>
-                            </div> 
-                        </nav>
-                        <nav>
-                            <div class="balance-details income">
-                                <h5 class="poppins-medium">
-                                    <svg class="icon">
-                                        <use href="../assets/icons/graph-up-arrow.svg"></use>
-                                    </svg> 
-                                    Income</h5>
-                                <p class="poppins-medium" id="curIncome">$ 2000.00</p>
-                            </div>
-                            <div class="balance-details expences">
-                                <h5 class="poppins-medium">
-                                    <svg class="icon">
-                                        <use href="../assets/icons/graph-down-arrow.svg"></use>
-                                    </svg> 
-                                    Expences</h5>
-                                <p class="poppins-medium" id="curExpences">$ 1150.58</p>
-                            </div>
-                        </nav>
-                    </li>
-                    <li class="wallet">
-                        <nav>
-                            <div>
-                                <h4 class="poppins-regular">My Wallet</h4>
-                                <div class="chart">
-                                    <canvas id="doughnutChart"></canvas>
-                                </div>
-                            </div> 
-                            <ul id="walletСoins" class="wallet-coins">
-                            </ul>
-                        </nav>
-                    </li>
-                </ul>
-            </nav>
-            <nav class="market-container">
-                <h3 class="h4 poppins-medium">Market</h3> 
-                <ul id="cryptoList" class="crypto-list">
-                </ul>
-            </nav>
         </section>
         <div class="modal-loader">
             <span class="loader"></span>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/sidebars.js" class="astro-vvvwv3sm"></script>
-    <script type="module" src="../js/dashboard-page.js"></script>
+    <script src="../js/swap.js"></script>
 </body> 
 </html>
