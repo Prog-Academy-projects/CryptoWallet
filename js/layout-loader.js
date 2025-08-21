@@ -1,4 +1,7 @@
+
+
 async function loadLayout() {
+    console.log('layout-loader booted');
     const response = await fetch("../layout.html");
     const layoutHtml = await response.text();
 
@@ -16,7 +19,7 @@ async function loadLayout() {
         .replace("{{head}}", template.dataset.head || "")
         .replace("{{title}}", template.dataset.title || "Crypto Wallet");
 
-    document.documentElement.innerHTML = finalHtml;
+    // document.documentElement.innerHTML = finalHtml;
 
     document.open();
     document.write(finalHtml);
@@ -29,6 +32,7 @@ async function loadLayout() {
         ?.classList.add("active-cw");
     }
 }
+
 loadLayout();
 
 

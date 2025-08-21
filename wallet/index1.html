@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dmytro Ivashchenko">
     <meta name="generator" content="Astro v5.9.2">
-    <title>Crypto Wallet - Dashboard page</title>
+    <title>Crypto Wallet - Wallet page</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
     <script src="../js/color-modes.js"></script>
     <script src="../js/authGuard.js"></script>
@@ -20,12 +20,11 @@
     <meta name="theme-color" content="#712cf9">
     <link rel="stylesheet" href="../style/sidebars.css">
     <link rel="stylesheet" href="../style/base.css">
-    <link rel="stylesheet" href="../style/dashboard.css">
+    <link rel="stylesheet" href="../style/wallet.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/fonts.css">
-    <link rel="stylesheet" href="../style/modal-loader.css">
     <style>
         .bd-placeholder-img{
             font-size:1.125rem;
@@ -174,12 +173,12 @@
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary left-panel" style="width: 280px;"> 
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> 
                 <img class="bi pe-none me-2" src="../assets/img/crypto-logo.svg" alt="" width="72" height="57" aria-hidden="true">
-                <span class="fs-4 poppins-medium">CryptoWallet</span> 
+                <span class="fs-4 poppins-medium">CryptoNite</span> 
             </a> 
             <hr> 
             <ul class="nav nav-pills flex-column mb-auto"> 
                 <li> 
-                    <a href="../dashboard/index.html" class="nav-link link-body-emphasis poppins-regular active-cw"> 
+                    <a href="../dashboard/index.html" class="nav-link link-body-emphasis poppins-regular"> 
                         <svg class="bi pe-none me-2" width="24" height="24" aria-hidden="true">
                             <use xlink:href="#speedometer2"></use>
                         </svg>
@@ -187,7 +186,7 @@
                     </a>
                 </li> 
                 <li> 
-                    <a href="../wallet/index.html" class="nav-link link-body-emphasis poppins-regular">
+                    <a href="../wallet/index.html" class="nav-link link-body-emphasis poppins-regular active-cw">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet me-2" viewBox="0 0 16 16">
                             <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a2 2 0 0 1-1-.268M1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1"/>
                         </svg> -->
@@ -302,73 +301,59 @@
             </div> 
         </div> -->
         <section class="col-md-9 ms-sm-auto col-lg-10 right-panel"> <!-- px-md-3 -->
-            <!-- <h1>Dashboard</h1> -->
-            <div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-4 mb-0 "> 
-                <h1 class="h2 poppins-medium">Dashboard</h1> 
+            <!-- <h1>Wallet</h1> -->
+            <div class="header d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-4 mb-0"> 
+                <h1 class="h2 poppins-medium">Wallet</h1> 
                 <div class="btn-toolbar mb-2 mb-md-0"> 
-                    <div class="btn-group me-2 "> 
+                    <div class="btn-group me-2"> 
                     </div> 
                 </div> 
             </div>
-            
-            <nav class="main-container">
-                <ul>
-                    <li class="balance">
-                        <nav>
-                            <div class="balance-info">
-                                <h4 class="poppins-regular">Balance</h4>
-                                <p class="poppins-regular" id="curBalance"></p>
-                            </div>
-                            <div class="balance-diff">
-                                <p class="poppins-regular difference-style" id="curDif-balance"> -0.82 %</p>
-                            </div> 
-                        </nav>
-                        <nav>
-                            <div class="balance-details income">
-                                <h5 class="poppins-medium">
-                                    <svg class="icon">
-                                        <use href="../assets/icons/graph-up-arrow.svg"></use>
-                                    </svg> 
-                                    Income</h5>
-                                <p class="poppins-medium" id="curIncome">$ 2000.00</p>
-                            </div>
-                            <div class="balance-details expences">
-                                <h5 class="poppins-medium">
-                                    <svg class="icon">
-                                        <use href="../assets/icons/graph-down-arrow.svg"></use>
-                                    </svg> 
-                                    Expences</h5>
-                                <p class="poppins-medium" id="curExpences">$ 1150.58</p>
-                            </div>
-                        </nav>
-                    </li>
-                    <li class="wallet">
-                        <nav>
-                            <div>
-                                <h4 class="poppins-regular">My Wallet</h4>
-                                <div class="chart">
-                                    <canvas id="doughnutChart"></canvas>
-                                </div>
-                            </div> 
-                            <ul id="walletСoins" class="wallet-coins">
-                            </ul>
-                        </nav>
-                    </li>
-                </ul>
+            <nav class="container balance">
+                <div class="balance-info">
+                    <h3 class="poppins-medium">Balance</h3>
+                    <h3 class="poppins-medium" id="curBalance"></h3>
+                    <p class="poppins-regular difference-style" id="curDifBalance"></p>
+                </div>
+                <div class="balance-chart">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
             </nav>
-            <nav class="market-container">
-                <h3 class="h4 poppins-medium">Market</h3> 
-                <ul id="cryptoList" class="crypto-list">
-                </ul>
+            <nav class="main-container">
+                <div>
+                    <h3 class="h4 poppins-medium">My crypto currencies</h3> 
+                    <nav class="container wallet">
+                        <ul id="walletСoins" class="wallet-coins">
+                        </ul>
+                    </nav>
+                </div>
+                <div>
+                    <h3 class="h4 poppins-medium">The most popular</h3>
+                    <nav class="container market">
+                        <div class="market-table">
+                            <nav class="market-header poppins-medium">
+                                <div>#</div>
+                                <div>Name</div>
+                                <div></div>
+                                <div>Market Price</div>
+                                <div>Market Cap</div>
+                                <div>Volume(24h)</div>
+                                <div>24h %</div>
+                            </nav>
+                            <ul id="marketRates">
+                            </ul>
+                        </div>
+                    </nav>
+                 </div>
             </nav>
         </section>
         <div class="modal-loader">
             <span class="loader"></span>
-        </div>
+        </div> 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/sidebars.js" class="astro-vvvwv3sm"></script>
-    <script type="module" src="../js/dashboard-page.js"></script>
+    <script type="module" src="../js/wallet-page.js"></script>
 </body> 
 </html>

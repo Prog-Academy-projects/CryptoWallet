@@ -1,0 +1,68 @@
+<template data-title="Crypto Wallet - Dashboard page"
+          data-section="dashboard"
+          data-head='<link rel="stylesheet" href="../style/dashboard.css">'
+          data-scripts='
+              <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+              <script type="module" src="../js/dashboard-page.js"></script>
+          '>
+
+    <div data-caption>
+        Dashboard
+    </div>
+
+    <div data-content>
+
+        <nav class="main-container">
+            <ul>
+                <li class="balance">
+                    <nav>
+                        <div class="balance-info">
+                            <h4 class="poppins-regular">Balance</h4>
+                            <p class="poppins-regular" id="curBalance"></p>
+                        </div>
+                        <div class="balance-diff">
+                            <p class="poppins-regular difference-style" id="curDif-balance"> -0.82 %</p>
+                        </div> 
+                    </nav>
+                    <nav>
+                        <div class="balance-details income">
+                            <h5 class="poppins-medium">
+                                <svg class="icon">
+                                    <use href="../assets/icons/graph-up-arrow.svg"></use>
+                                </svg> 
+                                Income</h5>
+                            <p class="poppins-medium" id="curIncome">$ 2000.00</p>
+                        </div>
+                        <div class="balance-details expences">
+                            <h5 class="poppins-medium">
+                                <svg class="icon">
+                                    <use href="../assets/icons/graph-down-arrow.svg"></use>
+                                </svg> 
+                                Expences</h5>
+                            <p class="poppins-medium" id="curExpences">$ 1150.58</p>
+                        </div>
+                    </nav>
+                </li>
+                <li class="wallet">
+                    <nav>
+                        <div>
+                            <h4 class="poppins-regular">My Wallet</h4>
+                            <div class="chart">
+                                <canvas id="doughnutChart"></canvas>
+                            </div>
+                        </div> 
+                        <ul id="walletСoins" class="wallet-coins">
+                        </ul>
+                    </nav>
+                </li>
+            </ul>
+        </nav>
+        <nav class="market-container">
+            <h3 class="h4 poppins-medium">Market</h3> 
+            <ul id="cryptoList" class="crypto-list">
+            </ul>
+        </nav>
+    </div>
+
+</template>
+<script src="../js/layout-loader.js"></script>
