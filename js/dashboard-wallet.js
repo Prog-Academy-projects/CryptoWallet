@@ -39,7 +39,7 @@ export function renderWalletCoins() {
         const icon = COINS[coin].icon || "../assets/img/solana.png";
 
         const differ = coinRate.usd_24h_change?.toFixed(2) ?? "0";
-        const span = createSpan(differ);
+        const span = createSpan(null, differ);
 
         const pattern = `
             <li class="wallet-coin">

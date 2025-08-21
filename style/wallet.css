@@ -10,9 +10,12 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    width: 60%;
-    h4{
-
+    width: 50%;
+    h3:first-child{
+        padding-bottom: 10px ;
+    }
+    #curDifBalance{
+        font-size: 1.1rem;
     }
     .balance-chart{
         width: 200px;
@@ -29,7 +32,7 @@
     h3{
         padding: 20px 0 10px 0 ;
     }
-    div{
+    > div{
         max-width: 100%;
         display: flex;
         flex-direction: column;
@@ -41,13 +44,13 @@
 }
 
 .wallet{
-    width: 26vw;
+    width: 25vw;
     .wallet-coins{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap; 
         width: 100%;
-        height: 90%;
+        height: 40vh;  /* TO CHANGE */
         margin: 0;
         padding: 0;
         list-style: none;
@@ -67,7 +70,6 @@
                 flex-direction: column;
                 h5{
                     margin: 0;
-                    font-size: 1.2rem;
                 }
                 p{
                     margin: 0;
@@ -77,22 +79,32 @@
             }
             div:first-of-type{
                 align-items: flex-start;
-                width: 30%;
+                width: 25%;
             }
             div:last-child{
                 align-items: flex-end;
                 width: 25%;
+                h5{
+                    font-size: 1.1rem;
+                }
             }
         }
     }
 }
 
 .market{
-    width: 46vw;
+    width: 47vw;
     .market-table {
-        display: grid;
-        grid-template-rows: auto;
-        row-gap: 8px;
+        ul{
+            display: grid;
+            grid-template-rows: auto;
+            row-gap: 8px;
+            height: 33.5vh; /* TO CHANGE */
+            overflow-y: auto;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
     }
 
     .market-header, .market-row {
@@ -101,25 +113,37 @@
         }
         display: grid;
         grid-template-columns: 
-            0.5fr               /* # */
-            1fr                 /* Name */
-            0.5fr               /* Code */
-            1.5fr               /* Price */
-            1.5fr               /* Market Cap */
-            1.5fr               /* Volume(24h) */
-            1fr;                /* Changes(24h) */
+            0.3fr                 /* # */
+            0.9fr                 /* Name */
+            0.3fr                 /* Code */
+            1.3fr                 /* Market Price */
+            2fr                   /* Market Cap */
+            1.9fr                 /* Volume(24h) */
+            0.8fr;                /* 24h % */
         align-items: center;
+        div{
+            display: flex;
+        }
+        div:not(:nth-child(-n + 3)){
+            justify-content: end;
+        }
     }
 
     .market-header {
-        font-weight: bold;
+        font-size: .9rem;
         border-top: 2px solid #333;
         border-bottom: 2px solid #333;
+        padding: 3px 0 3px 0;; 
     }
 
     .market-row {
-        padding-bottom: 1%;
-        border-bottom: 1px solid #333;
+        font-size: .9rem;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #333; 
+        div:nth-child(3){
+            font-size: .9rem;
+            color: #AB9F9F;
+        }
     }
 }
 

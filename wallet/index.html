@@ -302,9 +302,9 @@
             </div>
             <nav class="container balance">
                 <div class="balance-info">
-                    <h3 class="poppins-regular">Balance</h3>
-                    <h3 class="poppins-regular" id="curBalance"></h3>
-                    <p class="poppins-regular difference-style" id="curDifBalance"> $ 14.24 (+0.82%)</p>
+                    <h3 class="poppins-medium">Balance</h3>
+                    <h3 class="poppins-medium" id="curBalance"></h3>
+                    <p class="poppins-regular difference-style" id="curDifBalance"></p>
                 </div>
                 <div class="balance-chart">
                     <canvas id="doughnutChart"></canvas>
@@ -315,36 +315,6 @@
                     <h3 class="h4 poppins-medium">My crypto currencies</h3> 
                     <nav class="container wallet">
                         <ul id="walletСoins" class="wallet-coins">
-                            <li class="wallet-coin">
-                                <img src="../assets/img/btc.png" alt="bitcoin">
-                                <div>
-                                    <h5 class="poppins-medium">Bitcoin</h5>
-                                    <p class="poppins-regular" id="curPrice-bitcoin">$ 117,224.38</p>
-                                </div>
-                                <div>
-                                    <p>btc</p>  
-                                    <p class="poppins-regular difference-style" id="curDif-bitcoin">-0.05%</p> 
-                                </div>
-                                <div>
-                                    <h5 class="poppins-medium">0.25</h5>
-                                    <p class="poppins-regular" id="totalPrice-bitcoin">$ 29,132.43</p>
-                                </div>
-                            </li>
-                            <li class="wallet-coin">
-                                <img src="../assets/img/btc.png" alt="bitcoin">
-                                <div>
-                                    <h5 class="poppins-medium">Bitcoin</h5>
-                                    <p class="poppins-regular" id="curPrice-bitcoin">$ 117,224.38</p>
-                                </div>
-                                <div>
-                                    <p>btc</p>  
-                                    <p class="poppins-regular difference-style" id="curDif-bitcoin">-0.05%</p> 
-                                </div>
-                                <div>
-                                    <h5 class="poppins-medium">0.25</h5>
-                                    <p class="poppins-regular" id="totalPrice-bitcoin">$ 29,132.43</p>
-                                </div>
-                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -352,86 +322,21 @@
                     <h3 class="h4 poppins-medium">The most popular</h3>
                     <nav class="container market">
                         <div class="market-table">
-                            <div class="market-header">
+                            <nav class="market-header poppins-medium">
                                 <div>#</div>
                                 <div>Name</div>
-                                <div>Code</div>
-                                <div>Price</div>
+                                <div></div>
+                                <div>Market Price</div>
                                 <div>Market Cap</div>
                                 <div>Volume(24h)</div>
-                                <div>Changes(24h)</div>
-                            </div>
-                            <div class="market-row">
-                                <div>1</div>
-                                <div>Bitcoin</div>
-                                <div>BTC</div>
-                                <div>$ 117500.08</div>
-                                <div>$ 2017500.08</div>
-                                <div>$ 22,700.016</div>
-                                <div>-0.01%</div>
-                            </div>
-                            <div class="market-row">
-                                <div>1</div>
-                                <div>Bitcoin</div>
-                                <div>BTC</div>
-                                <div>$ 117500.08</div>
-                                <div>$ 2017500.08</div>
-                                <div>$ 22,700.016</div>
-                                <div>-0.01%</div>
-                            </div>
+                                <div>24h %</div>
+                            </nav>
+                            <ul id="marketRates">
+                            </ul>
                         </div>
-                        <!-- <table class="market-table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Code</th>
-                                    <th>Price</th>
-                                    <th>Count</th>
-                                    <th>Total,$</th>
-                                    <th>Last</th>
-                                </tr>
-                            </thead>
-                            <tbody class="market-coins">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Bitcoin</td>
-                                    <td>BTC</td>
-                                    <td>$ 117500.08</td>
-                                    <td>0.2</td>
-                                    <td>$ 22,700.016</td>
-                                    <td>-0.01%</td>
-                                </tr>
-                            </tbody>
-                        </table> -->
                     </nav>
                  </div>
             </nav>
-            <table>
-                <button id="getWallet">Show Balance</button>
-                <thead>
-                    <th>Name</th>
-                    <th>Balnce</th>
-                    <th>Rate</th>
-                    <th>USD</th>
-                </thead>
-                <tbody class="walletBody">
-                </tbody>
-            </table>
-            <table>
-                <button id="getCryptoRates">Get Crypto Rates</button>
-                <thead>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Rate to USD</th>
-                    <th>usd_market_cap</th>
-                    <th>usd_24h_vol</th>
-                    <th>usd_24h_change</th>
-                    <th>last_updated_at</th>
-                </thead>
-                <tbody class="cryptoRatesBody">
-                </tbody>
-            </table>
         </section>
         <div class="modal-loader">
             <span class="loader"></span>

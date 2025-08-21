@@ -1,3 +1,13 @@
+export const COINS_GET_RATE = "btc,eth,trx,xrp,ltc,doge,usdt"; // TO STORE in LocalStorage
+
+export const DEFAULT_WALLET = {
+    BTC: 0.23,
+    ETH: 2.51,
+    LTC: 100,
+    DOGE: 10000,
+    USDT: 12000
+};
+
 export const COINS = {
     BTC: {
         id: "bitcoin",
