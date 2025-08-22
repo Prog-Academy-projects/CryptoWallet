@@ -3,13 +3,57 @@
           data-head='<link rel="stylesheet" href="../style/swap.css">'
           data-scripts='<script type="module" src="../js/swap.js"></script>'>
 
-  <div data-caption>
-    Swap
-  </div>
 
-  <div data-content>
-    <p>test data</p>
-  </div>
+          
+    <div data-caption>
+        Swap
+    </div>
+
+    <div data-content>
+        <nav class="swap-container">
+            <!-- <div> -->
+                <h4 class="poppins-regular">Swap</h4>
+                <div class="">
+                    <ul class="swap-currencies">
+                        <li class="swap-rate">
+                            <div class="swap-rate-from">
+                                <p>
+                                1
+                                </p>
+                                <p>
+                                ETH
+                                </p>
+                            </div>
+                            <img src="../assets/icons/arrow-right.svg" alt="arrow-right">
+                            <div class="swap-rate-to">
+                                <p>
+                                4000
+                                </p>
+                                <p>
+                                USD
+                                </p>
+                            </div>
+                        </li>
+                        <li class="swap-from">
+                            <label for="from">From:</label>
+                            <input type="number" placeholder="0.00"></input>
+                            <option>eth</option>
+                        </li>
+                        <img class="swap-arrows" src="../assets/icons/arrows-up-down.svg" alt="arrows-up-down">
+                        <li class="swap-to">
+                            <label for="to">To:</label>
+                            <input placeholder="0.00"></input>
+                            <option>xrp</option>
+                        </li>
+                        <li class="swap-button">
+                            <button>SWAP</button>
+                        </li>
+                    </ul>
+                </div>
+                
+            <!-- </div> -->
+        </nav>
+    </div>
 
 </template>
 <script src="../js/layout-loader.js"></script>

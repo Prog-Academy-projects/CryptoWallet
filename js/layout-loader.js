@@ -1,5 +1,5 @@
 window.onload = async function() {
-    console.log("layout-loader booted!");
+    console.info("layout-loader booted!");
     const response = await fetch("../layout.html");
     const layoutHtml = await response.text();
 
@@ -38,27 +38,3 @@ window.onload = async function() {
         }
     });
 };
-
-async function applyLayout() {
-  const resp = await fetch("../layout.html");
-  let html = await resp.text();
-
-  const template = document.querySelector("template");
-
-  html = html.replace("{{title}}", template.dataset.title || "App");
-  html = html.replace("{{head}}", template.dataset.head || "");
-  html = html.replace("{{content}}", template.innerHTML);
-  html = html.replace("{{scripts}}", template.dataset.scripts || "");
-
-  document.open();
-  document.write(html);
-  document.close();
-
-  const section = template.dataset.section;
-  if (section) {
-    document
-      .querySelector(`[data-section="${section}"]`)
-      ?.classList.add("active-cw");
-  }
-}
-// applyLayout();
