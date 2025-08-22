@@ -76,7 +76,7 @@
         .income h5 {
             margin: 0;
             font-size: 1.1rem;
-            svg{
+            img{
                 color: #2FA15D;
                 filter: drop-shadow(0px 0px 5px #2FA15D);
                 padding-right: 2px;
