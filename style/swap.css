@@ -49,6 +49,7 @@
         .swap-from, .swap-to{
             color: #000000;
             input{
+                color: #000000;
                 background-color: inherit;
                 border: hidden;
                 border-right: solid 1px #000000;
@@ -62,14 +63,18 @@
         .swap-button{
             color: #000000;
             background-color: #50A542;
-            overflow: hidden
-        }
-        .swap-button > button{
-            border: hidden;
-            width: inherit;
-            height: inherit;
-            background-color: inherit;
-            color: #000000;
+            /* overflow: hidden; */
+            button{
+                border: none;
+                width: inherit;
+                height: inherit;
+                background-color: inherit;
+                color: #000000;
+                border-radius: 30px;
+            }
+            button:hover{
+                filter: drop-shadow(0px 0px 5px #2FA15D);
+            }
         }
     }
 
