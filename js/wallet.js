@@ -16,7 +16,7 @@ export function getWallet() {
     return walletData ? JSON.parse(walletData) : DEFAULT_WALLET;
 }
 
-function saveWallet(wallet) {
+export function saveWallet(wallet) {
     localStorage.setItem(CACHE_KEY, JSON.stringify(wallet));
 }
 

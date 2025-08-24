@@ -1,7 +1,7 @@
 <template data-title="Crypto Wallet - Swap page"
           data-section="swap"
           data-head='<link rel="stylesheet" href="../style/swap.css">'
-          data-scripts='<script type="module" src="../js/swap.js"></script>'>
+          data-scripts='<script type="module" src="../js/swap-page.js"></script>'>
 
 
           
@@ -11,47 +11,86 @@
 
     <div data-content>
         <nav class="swap-container">
-            <!-- <div> -->
-                <h4 class="poppins-regular">Swap</h4>
-                <div class="">
-                    <ul class="swap-currencies">
-                        <li class="swap-rate">
-                            <div class="swap-rate-from">
-                                <p>
-                                1
-                                </p>
-                                <p>
-                                ETH
-                                </p>
-                            </div>
+            <h4 class="poppins-regular">Swap</h4>
+            <div class="">
+                <ul class="swap-currencies">
+                    <li class="swap-item swap-rate">
+                        <div class="swap-rate-from">
+                            <p>
+                            1
+                            </p>
+                            <p>
+                            ETH
+                            </p>
+                        </div>
+                        <div>
                             <img src="../assets/icons/arrow-right.svg" alt="arrow-right">
-                            <div class="swap-rate-to">
-                                <p>
-                                4000
-                                </p>
-                                <p>
-                                USD
-                                </p>
-                            </div>
-                        </li>
-                        <li class="swap-from">
-                            <label for="from">From:</label>
-                            <input id="from" type="number" placeholder="0.00"></input>
-                            <option>eth</option>
-                        </li>
-                        <img class="swap-arrows" src="../assets/icons/arrows-up-down.svg" alt="arrows-up-down">
-                        <li class="swap-to">
-                            <label for="to">To:</label>
-                            <input id="to" placeholder="0.00" disabled readonly></input>
-                            <option>xrp</option>
-                        </li>
-                        <li class="swap-button">
-                            <button type="button" class="btn">SWAP</button>
-                        </li>
-                    </ul>
-                </div>
-                
-            <!-- </div> -->
+                        </div>
+                        <div class="swap-rate-to">
+                            <p>
+                            4000
+                            </p>
+                            <p>
+                            USDT
+                            </p>
+                        </div>
+                    </li>
+                    <li class="swap-item swap-from">
+                        <!-- <img src="../assets/img/eth.png" alt="ethereum"> -->
+                        <label for="fromCoin">From:</label>
+                        <input id="fromCoin" type="number" placeholder="0.00"></input>
+                        <div class="dropdown">
+                            <button id="fromCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../assets/img/eth.png" alt="ethereum" width="20"> ETH
+                            </button>
+                            <input type="hidden" name="coin" id="fromCoinInput" value="USDT">
+                            <ul class="dropdown-menu">
+                                <li><button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
+                                    <img src="../assets/img/eth.png" alt="ethereum">ETH
+                                </button></li>
+                                <li><button class="dropdown-item" type="button" data-value="BTC" data-label="BTC" data-icon="../assets/img/btc.png">
+                                    <img src="../assets/img/btc.png" alt="bitcoin">BTC
+                                </button></li>
+                                <li><button class="dropdown-item" type="button" data-value="USDT" data-label="USDT" data-icon="../assets/img/usdt.png">
+                                    <img src="../assets/img/usdt.png" alt="tether">USDT
+                                </button></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="swap-item swap-arrows">
+                        <img  src="../assets/icons/arrows-up-down.svg" alt="arrows-up-down">
+                    </li>
+                    <li class="swap-item swap-to">
+                        <label for="toCoin">To:</label>
+                        <input id="toCoin" placeholder="0.00" disabled readonly></input>
+                        <div class="dropdown">
+                            <button id="toCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="../assets/img/usdt.png" alt="tether" width="20"> USDT
+                            </button>
+                            <input type="hidden" name="coin" id="toCoinInput" value="USDT">
+                            <ul class="dropdown-menu">
+                                <li><button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
+                                    <img src="../assets/img/eth.png" alt="ethereum">ETH
+                                </button></li>
+                                <li><button class="dropdown-item" type="button" data-value="BTC" data-label="BTC" data-icon="../assets/img/btc.png">
+                                    <img src="../assets/img/btc.png" alt="bitcoin">BTC
+                                </button></li>
+                                <li><button class="dropdown-item" type="button" data-value="USDT" data-label="USDT" data-icon="../assets/img/usdt.png">
+                                    <img src="../assets/img/usdt.png" alt="tether">USDT
+                                </button></li>
+                            </ul>
+                        </div>
+                        <!-- <select name="coin" id="coin">
+                            <option value="usdt" selected>usdt</option>
+                            <option value="btc">btc</option>
+                            <option value="eth">eth</option>
+                        </select> -->
+                    </li>
+                    <li class="swap-item swap-button">
+                        <button id="swapBtn" type="button" class="btn">SWAP</button>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </div>
 

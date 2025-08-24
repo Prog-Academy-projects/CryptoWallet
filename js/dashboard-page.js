@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMarketChart();
 });
 
+
+// ---------- OLD ---------
 export function renderCryptoList(data) {
     const list = document.getElementById("cryptoList");
     list.innerHTML = "";
