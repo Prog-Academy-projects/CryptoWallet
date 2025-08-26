@@ -4,22 +4,26 @@ import { COINS } from "./settings.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     renderCoinsList();
+    checkBalance();
 });
 
-const fromInput = document.getElementById("fromCoin");
+function checkBalance() {
+    const fromInput = document.getElementById("fromCoin");
+    fromInput.classList.remove("is-invalid");
 
-fromInput.addEventListener("input", () => {
-    const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;
-    const wallet = getWallet();
-    const balance = wallet[fromCoin] || 0;
-    const value = parseFloat(fromInput.value) || 0;
+    fromInput.addEventListener("input", () => {
+        const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;
+        const wallet = getWallet();
+        const balance = wallet[fromCoin] || 0;
+        const value = parseFloat(fromInput.value) || 0;
 
-    if (value > balance) {
-        fromInput.classList.add("is-invalid");
-    } else {
-        fromInput.classList.remove("is-invalid");
-    }
-});
+        if (value > balance) {
+            fromInput.classList.add("is-invalid");
+        } else {
+            fromInput.classList.remove("is-invalid");
+        }
+    });
+}
 
 document.body.addEventListener("click", function(e) {
     if (e.target.closest(".dropdown-item")) {
@@ -39,6 +43,7 @@ document.body.addEventListener("click", function(e) {
         if (otherDropdown && otherDropdown.dataset.value === value) {
             return alert("Please choose different currencies!");
         }
+        
 
         dropdownBtn.innerHTML = `<img src="${icon}" alt="${COINS[label].name}" width="20"> ${label}`;
         dropdownBtn.dataset.value = value;

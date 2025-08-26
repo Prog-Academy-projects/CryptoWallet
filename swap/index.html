@@ -35,9 +35,10 @@
                     </li>
                     <li class="swap-item swap-from">
                         <label for="fromCoin">From:</label>
-                        <input id="fromCoin" class="form-control" type="number" placeholder="Max 0.00"></input>
-                        <div class="invalid-feedback">Not enough balance</div>
-
+                        <div class="from-input-group">
+                            <input id="fromCoin" class="form-control" type="number" placeholder="Max 0.00"></input>
+                            <div class="invalid-feedback">Not enough balance</div>
+                        </div>
                         <div class="dropdown">
                             <button id="fromCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" 
                             aria-describedby="validationfromCoinDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-value="ETH">
