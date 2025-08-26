@@ -92,22 +92,17 @@ export async function swapCoins(fromCoin, toCoin, amount) {
 
     const rates = await getRatesCached();
 
-    // 5. Берём курсы в USD (например rates = [{symbol:"BTC", usd:65000}, ...])
     const fromRate = rates.find(r => r.symbol.toLowerCase() === COINS[fromCoin].symbol).usd;
     const toRate   = rates.find(r => r.symbol.toLowerCase() === COINS[toCoin].symbol).usd;
 
-    // 6. Считаем сколько получаем
-    const usdValue = amount * fromRate;          // сколько $ отдаём
-    const toAmount = usdValue / toRate;          // сколько монет получаем
+    const usdValue = amount * fromRate;
+    const toAmount = usdValue / toRate;
 
-    // 7. Обновляем кошелёк
     wallet[fromCoin] = +(wallet[fromCoin] - amount).toFixed(8);
     wallet[toCoin]   = +((wallet[toCoin] || 0) + toAmount).toFixed(8);
 
-    // 8. Сохраняем
     saveWallet(wallet);
 
-    // 9. Возвращаем для отображения
     return {
         from: { coin: fromCoin, amount },
         to: { coin: toCoin, amount: toAmount }

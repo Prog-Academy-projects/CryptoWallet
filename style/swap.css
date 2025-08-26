@@ -86,13 +86,9 @@
                 }
             }
         }
-        .from-input-group{
-            
-        }
         .swap-button{
             color: #000000;
             background-color: #50A542;
-            /* overflow: hidden; */
             button{
                 border: none;
                 width: inherit;
