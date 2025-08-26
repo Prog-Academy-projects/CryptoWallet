@@ -37,14 +37,13 @@ document.body.addEventListener("click", async function(e) {
         const label = item.getAttribute("data-label");
         const value = item.getAttribute("data-value");
 
-        const otherDropdown = dropdown.id.includes("from") 
+        const otherDropdown = dropdownBtn.id.includes("from") 
             ? document.querySelector("#toCoinDropdown") 
             : document.querySelector("#fromCoinDropdown");
 
         if (otherDropdown && otherDropdown.dataset.value === value) {
             return alert("Please choose different currencies!");
         }
-        
 
         dropdownBtn.innerHTML = `<img src="${icon}" alt="${COINS[label].name}" width="20"> ${label}`;
         dropdownBtn.dataset.value = value;
