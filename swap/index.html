@@ -10,7 +10,7 @@
     <div data-content>
         <nav class="swap-container">
             <h4 class="poppins-regular">Swap</h4>
-            <div class="">
+            <div>
                 <ul class="swap-currencies">
                     <li class="swap-item swap-rate">
                         <div class="swap-rate-from">
@@ -26,7 +26,6 @@
                         </div>
                         <div class="swap-rate-to">
                             <p>
-                            4000
                             </p>
                             <p>
                             USDT
@@ -36,7 +35,7 @@
                     <li class="swap-item swap-from">
                         <label for="fromCoin">From:</label>
                         <div class="from-input-group">
-                            <input id="fromCoin" class="form-control" type="number" placeholder="Max 0.00"></input>
+                            <input id="fromCoin" class="form-control" type="number" placeholder="Max 0.00">
                             <div class="invalid-feedback">Not enough balance</div>
                         </div>
                         <div class="dropdown">
@@ -46,26 +45,17 @@
                             </button>
                             <input type="hidden" name="coin" id="fromCoinInput" value="USDT">
                             <ul class="dropdown-menu" id="fromCoinList">
-                                <!-- <li>
-                                    <button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
-                                        <img src="../assets/img/eth.png" alt="ethereum">ETH
-                                    </button>
-                                </li>
-                                <li><button class="dropdown-item" type="button" data-value="BTC" data-label="BTC" data-icon="../assets/img/btc.png">
-                                    <img src="../assets/img/btc.png" alt="bitcoin">BTC
-                                </button></li>
-                                <li><button class="dropdown-item" type="button" data-value="USDT" data-label="USDT" data-icon="../assets/img/usdt.png">
-                                    <img src="../assets/img/usdt.png" alt="tether">USDT
-                                </button></li> -->
                             </ul>
                         </div>
                     </li>
                     <li class="swap-item swap-arrows">
-                        <img  src="../assets/icons/arrows-up-down.svg" alt="arrows-up-down">
+                        <button id="switchCurrenciesBtn" type="button" class="btn" aria-label="Switch currencies">
+                            <img  src="../assets/icons/arrows-up-down.svg" alt="arrows-up-down">
+                        </button>
                     </li>
                     <li class="swap-item swap-to">
                         <label for="toCoin">To:</label>
-                        <input id="toCoin" placeholder="0.00" disabled readonly></input>
+                        <input id="toCoin" placeholder="0.00" disabled readonly>
                         <div class="dropdown">
                             <button id="toCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-value="USDT">
                                 <img src="../assets/img/usdt.png" alt="tether" width="20"> USDT

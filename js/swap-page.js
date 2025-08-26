@@ -4,11 +4,15 @@ import { COINS } from "./settings.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     renderCoinsList();
-    updatePlaceholder()
+    updateSwapRate();
+    updatePlaceholder();
 });
 
 // ------- Check input amount ------------
-document.getElementById("fromCoin").addEventListener("input", validateInput);
+document.getElementById("fromCoin").addEventListener("input", (event) => {
+    validateInput();
+    updateConvertedAmount(event.target.value)
+});
 
 // ------- Choose coin from dropdown ------------
 document.body.addEventListener("click", async function(e) {
@@ -36,18 +40,12 @@ document.body.addEventListener("click", async function(e) {
         if (hiddenInput) hiddenInput.value = value;
 
         await updateSwapRate();
-        updatePlaceholder();
         resetInputs();
-        // validateInput()
+        updatePlaceholder();
+        validateInput();
 
         console.log("Chose:", value, "in dropdown:", dropdownBtn.id);
     };
-});
-
-// ------- Edit coin ------------
-document.getElementById("fromCoin").addEventListener("change", (event) => {
-    console.log(event.target.value)
-    updateConvertedAmount(event.target.value)
 });
 
 // ------- Swap coins ------------
@@ -60,13 +58,9 @@ document.querySelector("#swapBtn").addEventListener("click", async () => {
 
     if (result) {
         alert(`Coins successfully changed ${result.from.amount} ${result.from.coin} on ${result.to.amount.toFixed(6)} ${result.to.coin}`);
-        renderWallet();
     }
 });
 
-
-function renderWallet() {
-}
 
 function updatePlaceholder() {
     const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;

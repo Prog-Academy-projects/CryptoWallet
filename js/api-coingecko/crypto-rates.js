@@ -5,71 +5,25 @@ import { COINS_BY_SYMBOL } from "../settings.js";
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 const CACHE_KEY = 'cryptoRates';
 
-let ratesCache = [];
+let cachedRates = null;
+let lastUpdated = 0;
 
-export async function loadRates() {
-  ratesCache = await getCryptoRates();
-  localStorage.setItem("rates", JSON.stringify(ratesCache));
-  return ratesCache;
-}
-
-export function getRates() {
-  if (!ratesCache.length) {
-    const stored = localStorage.getItem("rates");
-    if (stored) ratesCache = JSON.parse(stored);
-  }
-  return ratesCache;
+export async function getRatesCached() {
+    const now = Date.now();
+    if (!cachedRates || (now - lastUpdated > 60000)) {
+        cachedRates = await getCryptoRates();
+        lastUpdated = now;
+    }
+    return cachedRates;
 }
 
 // -------------------- GET CRYPTO RATES --------------------
-
 export const getCryptoRates = async (coins) => {
     const loader = document.querySelector(".modal-loader");
     loader?.classList.add("active");
 
     const url = URL +
     `simple/price?symbols=${coins}&vs_currencies=usd` +
-    `&include_market_cap=true&include_24hr_vol=true` +
-    `&include_24hr_change=true&include_last_updated_at=true&precision=2`;
-
-    try {
-        const cached = localStorage.getItem(CACHE_KEY);
-        if (cached) {
-            const parsed = JSON.parse(cached);
-            if (Date.now() - parsed.timestamp < CACHE_TTL) {
-                console.log("Use data from localStorage");
-                return parsed.data;
-            }
-        }
-
-        const data = await req(url);
-        console.log("Fetched:", data);
-
-        const arr = Object.entries(data).map(([symbol, values]) => ({
-            symbol,
-            name: COINS_BY_SYMBOL[symbol].name || symbol.toUpperCase(),
-            ...values
-        }));
-
-        localStorage.setItem(CACHE_KEY, JSON.stringify({
-            timestamp: Date.now(),
-            data: arr
-        }));
-        return arr;
-    } catch (error) {
-        console.log("Fetch error:", error);
-        return [];
-    } finally {
-        loader?.classList.remove("active");
-    }
-}
-// ---- DRAFT -------
-export const getRateBySymbol = async (coin) => {
-    const loader = document.querySelector(".modal-loader");
-    loader?.classList.add("active");
-
-    const url = URL +
-    `simple/price?symbols=${coin}&vs_currencies=usd` +
     `&include_market_cap=true&include_24hr_vol=true` +
     `&include_24hr_change=true&include_last_updated_at=true&precision=2`;
 
