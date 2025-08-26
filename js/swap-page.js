@@ -5,6 +5,7 @@ import { COINS } from "./settings.js";
 document.addEventListener("DOMContentLoaded", () => {
     renderCoinsList();
     checkBalance();
+    updatePlaceholder()
 });
 
 function checkBalance() {
@@ -25,7 +26,7 @@ function checkBalance() {
     });
 }
 
-document.body.addEventListener("click", function(e) {
+document.body.addEventListener("click", async function(e) {
     if (e.target.closest(".dropdown-item")) {
         const item = e.target.closest(".dropdown-item");
         const dropdown = item.closest(".dropdown");
@@ -50,7 +51,8 @@ document.body.addEventListener("click", function(e) {
 
         if (hiddenInput) hiddenInput.value = value;
 
-        updateSwapRate();
+        await updateSwapRate();
+        updatePlaceholder();
 
         console.log("Chose:", value, "in dropdown:", dropdownBtn.id);
     };
@@ -76,5 +78,13 @@ document.querySelector("#swapBtn").addEventListener("click", async () => {
 
 
 function renderWallet() {
+}
 
+function updatePlaceholder() {
+    const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;
+    const wallet = getWallet();
+    const balance = wallet[fromCoin] || 0;
+
+    const fromInput = document.getElementById("fromCoin");
+    fromInput.placeholder = `Max: ${balance}`;
 }
