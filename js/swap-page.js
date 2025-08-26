@@ -1,3 +1,4 @@
+import { getWallet } from "./wallet.js";
 import { renderCoinsList, swapCoins, updateSwapRate, updateConvertedAmount } from "./swap.js";
 import { COINS } from "./settings.js";
 
@@ -5,11 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
     renderCoinsList();
 });
 
+const fromInput = document.getElementById("fromCoin");
 
-// document.querySelectorAll(".dropdown-item").forEach(item => {
-//     debugger
-//     item.addEventListener("click", function() {
-document.body.addEventListener("click", async function(e) {
+fromInput.addEventListener("input", () => {
+    const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;
+    const wallet = getWallet();
+    const balance = wallet[fromCoin] || 0;
+    const value = parseFloat(fromInput.value) || 0;
+
+    if (value > balance) {
+        fromInput.classList.add("is-invalid");
+    } else {
+        fromInput.classList.remove("is-invalid");
+    }
+});
+
+document.body.addEventListener("click", function(e) {
     if (e.target.closest(".dropdown-item")) {
         const item = e.target.closest(".dropdown-item");
         const dropdown = item.closest(".dropdown");
@@ -20,12 +32,20 @@ document.body.addEventListener("click", async function(e) {
         const label = item.getAttribute("data-label");
         const value = item.getAttribute("data-value");
 
+        const otherDropdown = dropdown.id.includes("from") 
+            ? document.querySelector("#toCoinDropdown") 
+            : document.querySelector("#fromCoinDropdown");
+
+        if (otherDropdown && otherDropdown.dataset.value === value) {
+            return alert("Please choose different currencies!");
+        }
+
         dropdownBtn.innerHTML = `<img src="${icon}" alt="${COINS[label].name}" width="20"> ${label}`;
         dropdownBtn.dataset.value = value;
 
         if (hiddenInput) hiddenInput.value = value;
 
-        await updateSwapRate();
+        updateSwapRate();
 
         console.log("Chose:", value, "in dropdown:", dropdownBtn.id);
     };

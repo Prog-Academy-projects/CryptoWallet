@@ -35,7 +35,9 @@
                     </li>
                     <li class="swap-item swap-from">
                         <label for="fromCoin">From:</label>
-                        <input id="fromCoin" type="number" placeholder="0.00"></input>
+                        <input id="fromCoin" class="form-control" type="number" placeholder="Max 0.00"></input>
+                        <div class="invalid-feedback">Not enough balance</div>
+
                         <div class="dropdown">
                             <button id="fromCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" 
                             aria-describedby="validationfromCoinDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-value="ETH">
@@ -69,15 +71,6 @@
                             </button>
                             <input type="hidden" name="coin" id="toCoinInput" value="USDT">
                             <ul class="dropdown-menu" id="toCoinList">
-                                <!-- <li><button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
-                                    <img src="../assets/img/eth.png" alt="ethereum">ETH
-                                </button></li>
-                                <li><button class="dropdown-item" type="button" data-value="BTC" data-label="BTC" data-icon="../assets/img/btc.png">
-                                    <img src="../assets/img/btc.png" alt="bitcoin">BTC
-                                </button></li>
-                                <li><button class="dropdown-item" type="button" data-value="USDT" data-label="USDT" data-icon="../assets/img/usdt.png">
-                                    <img src="../assets/img/usdt.png" alt="tether">USDT
-                                </button></li> -->
                             </ul>
                         </div>
                     </li>

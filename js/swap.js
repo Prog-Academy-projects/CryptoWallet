@@ -48,8 +48,8 @@ export async function updateSwapRate() {
     const rates = await getCryptoRates();
     console.log(COINS[fromCoin].symbol)
 
-    const fromData = rates.find(c => c.symbol.toLowerCase() === COINS[fromCoin].symbol);
-    const toData = rates.find(c => c.symbol.toLowerCase() === COINS[toCoin].symbol);
+    const fromData = rates.find(r => r.symbol.toLowerCase() === COINS[fromCoin].symbol);
+    const toData = rates.find(r => r.symbol.toLowerCase() === COINS[toCoin].symbol);
     if (!fromData || !toData) return;
 
     const rate = fromData.usd / toData.usd;
@@ -76,8 +76,8 @@ export async function updateConvertedAmount(input) {
     const toCoinAmount = document.querySelector("#toCoin");
 
     const rates = await getCryptoRates();
-    const fromData = rates.find(c => r.symbol.toLowerCase() === COINS[fromCoin].symbol);
-    const toData = rates.find(c => r.symbol.toLowerCase() === COINS[toCoin].symbol);
+    const fromData = rates.find(r => r.symbol.toLowerCase() === COINS[fromCoin].symbol);
+    const toData = rates.find(r => r.symbol.toLowerCase() === COINS[toCoin].symbol);
     if (!fromData || !toData) return;
 
     const rate = fromData.usd / toData.usd;
@@ -111,8 +111,8 @@ export async function swapCoins(fromCoin, toCoin, amount) {
     const rates = await getCryptoRates();
 
     // 5. Берём курсы в USD (например rates = [{symbol:"BTC", usd:65000}, ...])
-    const fromRate = rates.find(r => r.symbol.toLowerCase() === COINS[fromCoin]).usd;
-    const toRate   = rates.find(r => r.symbol.toLowerCase() === COINS[toCoin]).usd;
+    const fromRate = rates.find(r => r.symbol.toLowerCase() === COINS[fromCoin].symbol).usd;
+    const toRate   = rates.find(r => r.symbol.toLowerCase() === COINS[toCoin].symbol).usd;
 
     // 6. Считаем сколько получаем
     const usdValue = amount * fromRate;          // сколько $ отдаём
