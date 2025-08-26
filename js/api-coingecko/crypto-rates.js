@@ -5,6 +5,22 @@ import { COINS_BY_SYMBOL } from "../settings.js";
 const CACHE_TTL = 24 * 60 * 60 * 1000;
 const CACHE_KEY = 'cryptoRates';
 
+let ratesCache = [];
+
+export async function loadRates() {
+  ratesCache = await getCryptoRates();
+  localStorage.setItem("rates", JSON.stringify(ratesCache));
+  return ratesCache;
+}
+
+export function getRates() {
+  if (!ratesCache.length) {
+    const stored = localStorage.getItem("rates");
+    if (stored) ratesCache = JSON.parse(stored);
+  }
+  return ratesCache;
+}
+
 // -------------------- GET CRYPTO RATES --------------------
 
 export const getCryptoRates = async (coins) => {

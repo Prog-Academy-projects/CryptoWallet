@@ -2,9 +2,7 @@
           data-section="swap"
           data-head='<link rel="stylesheet" href="../style/swap.css">'
           data-scripts='<script type="module" src="../js/swap-page.js"></script>'>
-
-
-          
+ 
     <div data-caption>
         Swap
     </div>
@@ -36,24 +34,26 @@
                         </div>
                     </li>
                     <li class="swap-item swap-from">
-                        <!-- <img src="../assets/img/eth.png" alt="ethereum"> -->
                         <label for="fromCoin">From:</label>
                         <input id="fromCoin" type="number" placeholder="0.00"></input>
                         <div class="dropdown">
-                            <button id="fromCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button id="fromCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" 
+                            aria-describedby="validationfromCoinDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-value="ETH">
                                 <img src="../assets/img/eth.png" alt="ethereum" width="20"> ETH
                             </button>
                             <input type="hidden" name="coin" id="fromCoinInput" value="USDT">
-                            <ul class="dropdown-menu">
-                                <li><button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
-                                    <img src="../assets/img/eth.png" alt="ethereum">ETH
-                                </button></li>
+                            <ul class="dropdown-menu" id="fromCoinList">
+                                <!-- <li>
+                                    <button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
+                                        <img src="../assets/img/eth.png" alt="ethereum">ETH
+                                    </button>
+                                </li>
                                 <li><button class="dropdown-item" type="button" data-value="BTC" data-label="BTC" data-icon="../assets/img/btc.png">
                                     <img src="../assets/img/btc.png" alt="bitcoin">BTC
                                 </button></li>
                                 <li><button class="dropdown-item" type="button" data-value="USDT" data-label="USDT" data-icon="../assets/img/usdt.png">
                                     <img src="../assets/img/usdt.png" alt="tether">USDT
-                                </button></li>
+                                </button></li> -->
                             </ul>
                         </div>
                     </li>
@@ -64,12 +64,12 @@
                         <label for="toCoin">To:</label>
                         <input id="toCoin" placeholder="0.00" disabled readonly></input>
                         <div class="dropdown">
-                            <button id="toCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button id="toCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-value="USDT">
                                 <img src="../assets/img/usdt.png" alt="tether" width="20"> USDT
                             </button>
                             <input type="hidden" name="coin" id="toCoinInput" value="USDT">
-                            <ul class="dropdown-menu">
-                                <li><button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
+                            <ul class="dropdown-menu" id="toCoinList">
+                                <!-- <li><button class="dropdown-item" type="button" data-value="ETH" data-label="ETH" data-icon="../assets/img/eth.png">
                                     <img src="../assets/img/eth.png" alt="ethereum">ETH
                                 </button></li>
                                 <li><button class="dropdown-item" type="button" data-value="BTC" data-label="BTC" data-icon="../assets/img/btc.png">
@@ -77,14 +77,9 @@
                                 </button></li>
                                 <li><button class="dropdown-item" type="button" data-value="USDT" data-label="USDT" data-icon="../assets/img/usdt.png">
                                     <img src="../assets/img/usdt.png" alt="tether">USDT
-                                </button></li>
+                                </button></li> -->
                             </ul>
                         </div>
-                        <!-- <select name="coin" id="coin">
-                            <option value="usdt" selected>usdt</option>
-                            <option value="btc">btc</option>
-                            <option value="eth">eth</option>
-                        </select> -->
                     </li>
                     <li class="swap-item swap-button">
                         <button id="swapBtn" type="button" class="btn">SWAP</button>
@@ -93,6 +88,5 @@
             </div>
         </nav>
     </div>
-
 </template>
 <script src="../js/layout-loader.js"></script>
