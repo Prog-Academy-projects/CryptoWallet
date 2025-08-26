@@ -4,28 +4,13 @@ import { COINS } from "./settings.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     renderCoinsList();
-    checkBalance();
     updatePlaceholder()
 });
 
-function checkBalance() {
-    const fromInput = document.getElementById("fromCoin");
-    fromInput.classList.remove("is-invalid");
+// ------- Check input amount ------------
+document.getElementById("fromCoin").addEventListener("input", validateInput);
 
-    fromInput.addEventListener("input", () => {
-        const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;
-        const wallet = getWallet();
-        const balance = wallet[fromCoin] || 0;
-        const value = parseFloat(fromInput.value) || 0;
-
-        if (value > balance) {
-            fromInput.classList.add("is-invalid");
-        } else {
-            fromInput.classList.remove("is-invalid");
-        }
-    });
-}
-
+// ------- Choose coin from dropdown ------------
 document.body.addEventListener("click", async function(e) {
     if (e.target.closest(".dropdown-item")) {
         const item = e.target.closest(".dropdown-item");
@@ -52,16 +37,20 @@ document.body.addEventListener("click", async function(e) {
 
         await updateSwapRate();
         updatePlaceholder();
+        resetInputs();
+        // validateInput()
 
         console.log("Chose:", value, "in dropdown:", dropdownBtn.id);
     };
 });
 
+// ------- Edit coin ------------
 document.getElementById("fromCoin").addEventListener("change", (event) => {
     console.log(event.target.value)
     updateConvertedAmount(event.target.value)
 });
 
+// ------- Swap coins ------------
 document.querySelector("#swapBtn").addEventListener("click", async () => {
     const fromCoin = document.querySelector("#fromCoinInput").value;
     const toCoin = document.querySelector("#toCoinInput").value;
@@ -86,4 +75,26 @@ function updatePlaceholder() {
 
     const fromInput = document.getElementById("fromCoin");
     fromInput.placeholder = `Max: ${balance}`;
+}
+
+function resetInputs() {
+    const fromInput = document.getElementById("fromCoin");
+    const toInput   = document.getElementById("toCoin");
+    fromInput.value = "";
+    toInput.value   = "";
+    fromInput.classList.remove("is-invalid");
+}
+
+function validateInput() {
+    const fromCoin = document.querySelector("#fromCoinDropdown").dataset.value;
+    const wallet = getWallet();
+    const balance = wallet[fromCoin] || 0;
+    const fromInput = document.getElementById("fromCoin");
+    const value = parseFloat(fromInput.value) || 0;
+
+    if (value > balance) {
+        fromInput.classList.add("is-invalid");
+    } else {
+        fromInput.classList.remove("is-invalid");
+    }
 }
