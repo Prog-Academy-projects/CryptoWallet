@@ -1,4 +1,6 @@
-import { COINS, COINS_BY_ID, COINS_BY_SYMBOL } from "./settings.js";
+import { COINS } from "./settings.js";
+
+import { getRatesCached } from "./api-coingecko/crypto-rates.js";
 
 import { renderDoughnutChart } from "./charts/doughnutChart.js";
 import { createSpan } from "./differ-span.js";
@@ -7,13 +9,12 @@ import { getWallet } from "./wallet.js";
 
 
 const wallet = getWallet();
-const cached = localStorage.getItem('cryptoRates');
-const dataRates = JSON.parse(cached).data;
+const dataRates = await getRatesCached();
 
 let total_usd_balance = 0;
 
 // ------------- render Balance Chart -----------------
-export function renderBalanceChart() {
+export async function renderBalanceChart() {
     const labels = Object.keys(wallet);
     const balances = Object.entries(wallet).map(([coin, amount]) => {
         const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
@@ -23,7 +24,7 @@ export function renderBalanceChart() {
 }
 
 // ------------- render Wallet Coins -----------------
-export function renderWalletCoins() {
+export async function renderWalletCoins() {
     const list = document.getElementById("walletСoins");
     list.innerHTML = "";
 

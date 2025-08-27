@@ -1,5 +1,7 @@
 import { COINS, COINS_GET_RATE, DEFAULT_WALLET} from "./settings.js";
 
+import { getRatesCached } from "./api-coingecko/crypto-rates.js";
+
 import { renderDoughnutChart } from "./charts/doughnutChart.js";
 import { createSpan } from "./differ-span.js";
 
@@ -8,8 +10,7 @@ import { getCryptoRates } from "./api-coingecko/crypto-rates.js";
 const CACHE_KEY = 'wallet';
 
 const wallet = getWallet();
-const cached = localStorage.getItem('cryptoRates');
-const dataRates = JSON.parse(cached).data;
+const dataRates = await getRatesCached();
 
 export function getWallet() {
     const walletData = localStorage.getItem(CACHE_KEY);
@@ -19,7 +20,6 @@ export function getWallet() {
 export function saveWallet(wallet) {
     localStorage.setItem(CACHE_KEY, JSON.stringify(wallet));
 }
-
 
 // ------------- render Wallet Coins -----------------
 export function renderWalletCoins() {
@@ -116,8 +116,8 @@ export async function renderMarketRates() {
 
     let i = 0;
 
-    const rates = await getCryptoRates(COINS_GET_RATE);
-    rates.forEach((obj) => {
+    // const rates = await getCryptoRates(COINS_GET_RATE);
+    dataRates.forEach((obj) => {
         const { symbol, name, usd, usd_market_cap, usd_24h_vol, usd_24h_change } = obj;
         i += 1;
 

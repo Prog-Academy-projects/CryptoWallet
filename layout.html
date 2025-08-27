@@ -113,13 +113,15 @@
         </symbol> 
     </svg> 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle"> 
-        <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)"> 
+        <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+         id="bd-theme" type="button" aria-expanded="false" 
+         data-bs-toggle="dropdown" aria-label="Toggle theme (auto)"> 
             <svg class="bi my-1 theme-icon-active" aria-hidden="true">
                 <use href="#circle-half"></use>
             </svg> 
             <span class="visually-hidden" id="bd-theme-text">Toggle theme</span> 
         </button> 
-        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text"> 
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme"> 
             <li> 
                 <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false"> 
                     <svg class="bi me-2 opacity-50" aria-hidden="true">
@@ -187,9 +189,6 @@
                 </li> 
                 <li> 
                     <a href="../wallet/index.html" data-section="wallet" class="nav-link link-body-emphasis poppins-regular">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet me-2" viewBox="0 0 16 16">
-                            <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a2 2 0 0 1-1-.268M1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1"/>
-                        </svg> -->
                         <svg width="24" height="24" viewBox="0 0 30 27" fill="currentColor" class="bi me-2" xmlns="http://www.w3.org/2000/svg">
                             <path d="M27.0234 5.625H4.6875C4.16953 5.625 3.75 5.20547 3.75 4.6875C3.75 4.16953 4.16953 3.75 4.6875 3.75H27.1875C27.7055 3.75 28.125 3.33047 28.125 2.8125C28.125 1.25918 26.8658 0 25.3125 0H3.75C1.67871 0 0 1.67871 0 3.75V22.5C0 24.5713 1.67871 26.25 3.75 26.25H27.0234C28.6652 26.25 30 24.9885 30 23.4375V8.4375C30 6.88652 28.6652 5.625 27.0234 5.625ZM24.375 17.8125C23.3396 17.8125 22.5 16.9729 22.5 15.9375C22.5 14.9021 23.3396 14.0625 24.375 14.0625C25.4104 14.0625 26.25 14.9021 26.25 15.9375C26.25 16.9729 25.4104 17.8125 24.375 17.8125Z" fill="white"/>
                         </svg>
@@ -198,12 +197,6 @@
                 </li> 
                 <li> 
                     <a href="../swap/index.html" data-section="swap" class="nav-link link-body-emphasis poppins-regular"> 
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-currency-exchange me-2" viewBox="0 0 16 16">
-                            <path d="M0 5a5 5 0 0 0 4.027 4.905 6.5 6.5 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05q-.001-.07.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.5 3.5 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98q-.004.07-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5m16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0m-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674z"/>
-                        </svg> -->
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-right me-2" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
-                        </svg> -->
                         <svg width="24" height="24" viewBox="0 0 30 30" fill="currentColor" class="bi me-2" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 8.13838V6.976C0 6.01304 0.62959 5.23243 1.40625 5.23243H22.5V1.7453C22.5 0.193022 24.0175 -0.582501 24.9006 0.512385L29.5881 6.32427C30.1373 7.0052 30.1373 8.10917 29.5881 8.79003L24.9006 14.6019C24.0209 15.6925 22.5 14.9278 22.5 13.3691V9.88194H1.40625C0.62959 9.88194 0 9.10133 0 8.13838ZM28.5938 19.181H7.5V15.6938C7.5 14.1454 5.98465 13.3633 5.09936 14.4609L0.411855 20.2728C-0.137285 20.9537 -0.137285 22.0577 0.411855 22.7386L5.09936 28.5504C5.9799 29.6421 7.5 28.875 7.5 27.3176V23.8305H28.5938C29.3704 23.8305 30 23.0499 30 22.0869V20.9245C30 19.9616 29.3704 19.181 28.5938 19.181Z" fill="white"/>
                         </svg>
@@ -229,9 +222,6 @@
                     <strong id = "currentUserName">nda</strong> 
                 </a> 
                 <ul class="dropdown-menu text-small shadow"> 
-                    <!-- <li>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </li>  -->
                     <li>
                         <a class="dropdown-item" href="../profile/index.html">Profile</a>
                     </li> 

@@ -1,5 +1,5 @@
 import { URL, req } from "./main.js";
-import { COINS_BY_SYMBOL } from "../settings.js";
+import { COINS_BY_SYMBOL, COINS_GET_RATE } from "../settings.js";
 
 
 const CACHE_TTL = 24 * 60 * 60 * 1000;
@@ -11,9 +11,10 @@ let lastUpdated = 0;
 export async function getRatesCached() {
     const now = Date.now();
     if (!cachedRates || (now - lastUpdated > 60000)) {
-        cachedRates = await getCryptoRates();
+        cachedRates = await getCryptoRates(COINS_GET_RATE);
         lastUpdated = now;
     }
+    console.log("getRatesCached:"+cachedRates)
     return cachedRates;
 }
 

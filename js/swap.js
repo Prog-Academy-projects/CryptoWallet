@@ -1,6 +1,6 @@
 import { getWallet, saveWallet } from "./wallet.js";
-import { getCryptoRates, getRatesCached } from "./api-coingecko/crypto-rates.js";
-import { COINS,COINS_BY_SYMBOL } from "./settings.js";
+import { getRatesCached } from "./api-coingecko/crypto-rates.js";
+import { COINS, COINS_BY_SYMBOL } from "./settings.js";
 
 // ------------------- renderCoinsList ---------------------------
 export async function renderCoinsList() {
