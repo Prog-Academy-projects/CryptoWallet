@@ -226,7 +226,7 @@
     animation: scaleChart .5s linear forwards;
 }
 
-@keyframes scaleChart {
+@keyframes scaleChart { /* add transition */
     from {
     }
     to {

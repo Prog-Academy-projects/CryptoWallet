@@ -30,9 +30,10 @@ window.onload = async function() {
     document.close();  
     
     window.addEventListener("DOMContentLoaded", () => {
-        const activeEl = document.querySelector(`[data-section="${section}"]`);
-        if (activeEl) {
-            activeEl.classList.add("active-cw");
+        const activeEls = document.querySelectorAll(`[data-section="${section}"]`);
+        activeEls.forEach
+        if (activeEls.length > 0) {
+            activeEls.forEach(el => el.classList.add("active-cw"));
         } else {
             console.warn("Not found element for page:", section);
         }

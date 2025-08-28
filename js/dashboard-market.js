@@ -32,7 +32,7 @@ export async function renderMarketChart() {
         for (i in rates){
             if (symbol == rates[i].symbol){
                 // console.log("Rate: ", rates[i])
-                const data = await getMarketChart(coin_id)
+                const data = await getMarketChart(coin_id);
                 const lastPriceIndex = data.prices.length - 1;
                 const lastPrice = data.prices[lastPriceIndex]?.[1];
                 // ------ displaying lastPrice from Coin Rate
