@@ -1,7 +1,11 @@
+.swap{
+    display: flex;
+    justify-content: center;
+}
 .swap-container{
     background-color: #2A2A2D;
-    width: 50vw;
-    height: 50vh;
+    min-width: 50vw;
+    min-height: 50vh;
     border-radius: 10px;
     padding: 5%;
     display: flex;
