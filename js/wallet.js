@@ -29,6 +29,7 @@ export function renderWalletCoins() {
     const list = document.getElementById("walletСoins");
     list.innerHTML = "";
 
+    console.log("Coins in wallet:")
     Object.entries(wallet).forEach(([coin, balance]) => {
         const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
         const usd_balance = coinRate.usd*balance
@@ -41,7 +42,7 @@ export function renderWalletCoins() {
         total_usd_balance += usd_balance;
         total_usd_balance_diff += usd_balance_diff;
 
-        console.log(COINS[coin])
+        console.log(COINS[coin].id)
         const name = COINS[coin].name || "Solana";
         const symbol = COINS[coin].symbol || "sol";
         const coin_id = COINS[coin].id || "solana"; 
@@ -131,8 +132,8 @@ export async function renderMarketRates() {
                 <div class="poppins-medium">${name}</div> 
                 <div class="poppins-regular">${symbol.toUpperCase()}</div>
                 <div class="poppins-regular">${usd != null ? "$" + Number(usd).toLocaleString() : '-'}</div>
-                <div class="poppins-regular">${usd_market_cap != null ? "$" + Number(usd_market_cap).toLocaleString() : '-'}</div>
-                <div class="poppins-regular">${usd_24h_vol != null ? "$" + Number(usd_24h_vol).toLocaleString() : '-'}</div>
+                <div class="poppins-regular">${usd_market_cap != null ? "$" + Number(usd_market_cap).toLocaleString(undefined, {maximumFractionDigits: 0}) : '-'}</div>
+                <div class="poppins-regular">${usd_24h_vol != null ? "$" + Number(usd_24h_vol).toLocaleString(undefined, {maximumFractionDigits: 0}) : '-'}</div>
                 <div class="poppins-regular">${span.outerHTML}</div>
             </li>
         `;

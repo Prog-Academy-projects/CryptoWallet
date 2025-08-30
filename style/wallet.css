@@ -114,12 +114,12 @@
         display: grid;
         grid-template-columns: 
             0.3fr                 /* # */
-            0.9fr                 /* Name */
-            0.3fr                 /* Code */
-            1.3fr                 /* Market Price */
-            2fr                   /* Market Cap */
-            1.9fr                 /* Volume(24h) */
-            0.8fr;                /* 24h % */
+            1.1fr                 /* Name */
+            0.4fr                 /* Code */
+            1.1fr                 /* Market Price */
+            1.8fr                   /* Market Cap */
+            1.8fr                 /* Volume(24h) */
+            1fr;                /* 24h % */
         align-items: center;
         div{
             display: flex;
@@ -170,36 +170,36 @@ table > thead >tr{
 @media (max-width: 767px) {
     .main-container{
     ul{
-        grid-template-columns: repeat(1, 383px);
+        /* grid-template-columns: repeat(1, 383px); */
     }}
     .crypto-list{
-        grid-template-columns: repeat(1, minmax(260px, 1fr));
+        /* grid-template-columns: repeat(1, minmax(260px, 1fr)); */
     }
 }
 @media (min-width: 768px) and (max-width: 991px) {
     .main-container{
     ul{
-        grid-template-columns: repeat(1, 383px);
+        /* grid-template-columns: repeat(1, 383px); */
     }}
     .crypto-list{
-        grid-template-columns: repeat(2, minmax(260px, 1fr));
+        /* grid-template-columns: repeat(2, minmax(260px, 1fr)); */
     }
 }
 @media (min-width: 992px) {
     .main-container{
     ul{
-        grid-template-columns: minmax(260px, 383px) 383px;
+        /* grid-template-columns: minmax(260px, 383px) 383px; */
     }}
     .crypto-list{
-        grid-template-columns: repeat(2, minmax(260px, 1fr));
+        /* grid-template-columns: repeat(2, minmax(260px, 1fr)); */
     }
 }
 @media (min-width: 1200px) {
     .main-container{
     ul{
-        grid-template-columns: repeat(2, 383px);
+        /* grid-template-columns: repeat(2, 383px); */
     }}
     .crypto-list{
-        grid-template-columns: repeat(3, minmax(260px, 1fr));
+        /* grid-template-columns: repeat(3, minmax(260px, 1fr)); */
     }
 }
