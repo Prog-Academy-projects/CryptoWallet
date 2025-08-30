@@ -166,3 +166,40 @@ table > thead >tr{
     display: flex;
     justify-content: space-between;
 }
+
+@media (max-width: 767px) {
+    .main-container{
+    ul{
+        grid-template-columns: repeat(1, 383px);
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(1, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .main-container{
+    ul{
+        grid-template-columns: repeat(1, 383px);
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 992px) {
+    .main-container{
+    ul{
+        grid-template-columns: minmax(260px, 383px) 383px;
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 1200px) {
+    .main-container{
+    ul{
+        grid-template-columns: repeat(2, 383px);
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
+    }
+}
