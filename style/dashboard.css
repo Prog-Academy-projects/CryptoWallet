@@ -12,7 +12,7 @@
 }
 
 .main-container > ul > li{
-    background-color: #2A2A2D;
+    background-color: var(--bs-tertiary-bg);
     height: inherit;
     border-radius: 10px;
     list-style: none;
@@ -175,8 +175,7 @@
 }
 
 .chart-container{
-    filter: brightness(90%);
-    background-color: #2A2A2D;
+    background-color: var(--bs-tertiary-bg);
     width: 93%;
     height: 91%;
     border-radius: 10px;
@@ -256,7 +255,7 @@
     }
     100% {
         box-shadow: 0px 0px 20px #4EFF9F;
-        filter: brightness(100%);
+        filter: brightness(90%);
         scale: 1.05;
     }
     /* from{},to {

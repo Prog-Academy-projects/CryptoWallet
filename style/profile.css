@@ -15,3 +15,6 @@ table > thead >tr{
     display: flex;
     justify-content: space-between;
 }
+ .profile-data{
+    background-color: var(--bs-light-bg-subtle);
+ }

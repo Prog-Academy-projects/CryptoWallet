@@ -7,7 +7,7 @@ body{
     padding: 0;
     max-width: 1400px;
     max-height: 100vh;
-    background-color:#000000;
+    background-color: var(--bs);
 }
 .main{
     height: 100vh;
@@ -15,9 +15,9 @@ body{
 
 .left-panel-xl{
     /* width: 20%; */
-    background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000 );
-    /* background: linear-gradient(to top, var(--bs-body-bg), #4EFF9F 50%, var(--bs-body-bg)); */
-    color: var(--bs-body-color);
+    /* background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000 ); */
+    background: linear-gradient(to top, var(--bs-body-bg), #4EFF9F 50%, var(--bs-body-bg));
+    color: var(--bs-light);
     order: 0;
     .coin-container{
         position: relative;
@@ -57,9 +57,6 @@ body{
 }
 
 .right-panel{
-    /* background: var(--bs-body-bg); --bs-dark-bg-subtle --bs-light --bs-light-rgb */
-    background-color:#000000;
-    color: var(--bs-body-color);
     padding-left: 2%;
     padding-right: 2%;
     height: 100vh;

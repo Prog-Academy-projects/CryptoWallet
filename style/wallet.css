@@ -5,7 +5,7 @@
     overflow-y: auto;
 }
 .container{
-    background-color: #2A2A2D;
+    background-color: var(--bs-tertiary-bg);
     /* height: 42vh; */
     border-radius: 10px;
     padding: 3%;
