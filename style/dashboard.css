@@ -1,19 +1,24 @@
 
 .main-container{
+    min-width: 100%;
     ul{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        width: 100%;
+        display: grid;
+        /* grid-template-columns: repeat(2, minmax(383px, 1fr)); */
+        /* grid-template-columns: repeat(2, 383px); */
+        justify-content: space-around;
+        align-content: space-evenly;
+        /* align-items: center; */
+        grid-column-gap: 2%;
+        /* grid-row-gap: 5%; */
+        /* width: 80%; */
         height: 210px;
         padding: 0;
+        overflow-y: scroll;
     }
 }
 
 .main-container > ul > li{
     background-color: #2A2A2D;
-    width: 40%;
     height: inherit;
     border-radius: 10px;
     list-style: none;
@@ -170,24 +175,22 @@
         padding: 1% 0 1% 0 ;
     }
     .crypto-list{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
+       display: grid;
+        /* grid-column-gap: 3%; */
+        /* grid-row-gap: 15px; */
         width: 100%;
-        height: 420px;
-        padding: 0;
+        height: 55vh;
+        padding: 20px;
         margin: 0;
-        row-gap: 6%;
-        /* overflow-y: auto; */
+        overflow-y: auto;
     }
 }
 
 .chart-container{
     filter: brightness(90%);
     background-color: #2A2A2D;
-    width: 31.5%;
-    height: 200px;
+    width: 93%;
+    height: 91%;
     border-radius: 10px;
     list-style: none;
     padding: 1%;
@@ -222,16 +225,94 @@
     } 
 }
 
+/* -------- IN DEV --------------- */
+
+/* .chart-container{
+    animation: shadowChart 1s linear 5s infinite running;
+} */
+/* @keyframes shadowChart{
+    from{
+    }
+    to{
+        box-shadow: 0px 0px 20px #4EFF9F;
+    }
+} */
+/* .chart-container {
+    animation: shadowChart 1s linear infinite;
+    animation-delay: 1s;
+} */
+/* .chart-container:nth-child(1) {
+  animation-delay: 0s;
+} */
+/* .active-glow {
+  box-shadow: 0px 0px 20px #4EFF9F;
+  transition: box-shadow 0.5s ease;
+}
+
+@keyframes shadowChart {
+  0%, 100% {
+    box-shadow: none;
+  }
+  50% {
+    box-shadow: 0px 0px 20px #4EFF9F;
+  }
+} */
+
 .chart-container:hover{
     animation: scaleChart .5s linear forwards;
 }
 
 @keyframes scaleChart { /* add transition */
-    from {
+    0% {
+        box-shadow: none;
     }
-    to {
+    100% {
+        box-shadow: 0px 0px 20px #4EFF9F;
         filter: brightness(100%);
         scale: 1.05;
-        box-shadow: 0px 0px 20px #4EFF9F;
+    }
+    /* from{},to {
+        transform: rotate3d(1, 1, 1, -60deg);
+        filter: brightness(100%);
+        scale: 1.05;
+        box-shadow: 0px 0px 20px #4EFF9F; 
+    } */
+}
+
+@media (max-width: 767px) {
+    .main-container{
+    ul{
+        grid-template-columns: repeat(1, 383px);
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(1, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .main-container{
+    ul{
+        grid-template-columns: repeat(1, 383px);
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 992px) {
+    .main-container{
+    ul{
+        grid-template-columns: minmax(260px, 383px) 383px;
+        /* width: 90%; */
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+    }
+}
+@media (min-width: 1200px) {
+    .main-container{
+    ul{
+        grid-template-columns: repeat(2, 383px);
+    }}
+    .crypto-list{
+        grid-template-columns: repeat(3, minmax(260px, 1fr));
     }
 }

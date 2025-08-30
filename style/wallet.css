@@ -147,3 +147,22 @@
     }
 }
 
+table{
+    width: 75vw;
+}
+table > thead >tr{
+    display: flex;
+    justify-content: space-between;
+}
+.cryptoRatesBody {
+
+    display: flex;
+    flex-direction: column;
+    height: 100px;  
+    overflow-y: auto;
+    
+}
+.cryptoRatesBody > tr{ /* TO DELETE */
+    display: flex;
+    justify-content: space-between;
+}

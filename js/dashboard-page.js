@@ -33,55 +33,32 @@ const test_data = {
     }
 };
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
     renderBalanceChart();
     renderWalletCoins();
     renderMarketChart();
+    renderShadow();
 });
 
+// -------- IN DEV ---------------
+function renderShadow() {
+    const charts = document.querySelectorAll(".chart-container");
 
-// ---------- OLD ---------
-export function renderCryptoList(data) {
-    const list = document.getElementById("cryptoList");
-    list.innerHTML = "";
+    console.log(charts);
+    let active = 0;
 
-    Object.entries(data).forEach(([symbol, info]) => {
-        const sym = symbol.toUpperCase();
-        console.log(SYMBOL_BY_NAME['Bitcoin'])
-        const name = NAME_BY_SYMBOL[sym] || sym;
-        const icon = ICON_BY_SYMBOL[sym] || "../assets/img/solana.png";
-        const color = COLOR_BY_SYMBOL[sym] || "#999";
-
-        const difference = info.usd_24h_change?.toFixed(2) ?? "0";
-
-        const item = `
-            <li class="chart-container ${name.charAt(0).toUpperCase()+name.slice(1)}">
-                <nav>
-                    <img src="${icon}" alt="${name}">
-                    <div>
-                        <h4 class="poppins-regular">${name}</h4>
-                        <h5 class="poppins-regular" id="curPrice-${symbol.toLowerCase()}">
-                            $${info.usd.toLocaleString()}
-                        </h5>
-                    </div>
-                    <div>
-                        <p>${sym}</p>
-                        <p class="poppins-regular difference-style" 
-                           id="curDif-${symbol.toLowerCase()}" 
-                           style="color:${difference >= 0 ? "green" : "red"};
-                                  text-shadow: 0 0 4px ${difference >= 0 ? "green" : "red"};">
-                           ${difference} %
-                        </p>
-                    </div> 
-                </nav>
-                <div class="line-chart">
-                    <canvas id="lineChart-${symbol.toLowerCase()}"></canvas>
-                </div>
-            </li>
-        `;
-        list.insertAdjacentHTML("beforeend", item);
-
-        // 🔹 здесь можно сразу вызвать функцию для отрисовки графика
-        // renderLineChart(`lineChart-${symbol.toLowerCase()}`, info, color);
+    setInterval(() => {
+    charts.forEach((chart, i) => {
+        chart.style.animation = `shadowChart 2s linear infinite`;
+        chart.style.animationDelay = `${i * 2}s`; // смещение для каждого
+        chart.classList.remove("active-glow")
     });
+    charts[active].classList.add("../style/dashboard.css/active-glow");
+    active = (active + 1) % charts.length;
+    }, 2000);
 }
+
+
+
