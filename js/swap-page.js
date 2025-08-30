@@ -43,8 +43,7 @@ document.body.addEventListener("click", async function(e) {
         resetInputs();
         updatePlaceholder();
         validateInput();
-
-        console.log("Chose:", value, "in dropdown:", dropdownBtn.id);
+        // console.log("Chose:", value, "in dropdown:", dropdownBtn.id);
     };
 });
 

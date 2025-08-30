@@ -28,6 +28,7 @@ export async function renderWalletCoins() {
     const list = document.getElementById("walletСoins");
     list.innerHTML = "";
 
+    console.log("Coins in wallet: ")
     Object.entries(wallet).forEach(([coin, balance]) => {
         const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
         const usd_balance = coinRate.usd*balance

@@ -19,6 +19,7 @@ export async function renderMarketChart() {
 
     const list = document.getElementById("cryptoList");
     list.innerHTML = "";
+    console.log("Coins from market: ")
     coins_for_market_chart.forEach(async (coin_id) => {
         
         console.log(COINS_BY_ID[coin_id])

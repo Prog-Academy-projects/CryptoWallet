@@ -5,10 +5,15 @@ if (!currentUser) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const userNameEl = document.getElementById("currentUserName");
-    if (userNameEl) {
-        userNameEl.textContent = currentUser;
+    // debugger
+    const userNameEls = document.querySelectorAll(".currentUserName");
+    userNameEls.forEach((e) => {
+        console.log("User: ", e)
+        if (e) {
+        e.textContent = currentUser;
     }
+    })
+    
 });
 
 document.addEventListener("DOMContentLoaded", () => {

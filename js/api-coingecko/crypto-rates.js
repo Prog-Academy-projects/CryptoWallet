@@ -14,7 +14,7 @@ export async function getRatesCached() {
         cachedRates = await getCryptoRates(COINS_GET_RATE);
         lastUpdated = now;
     }
-    console.log("getRatesCached:"+cachedRates)
+    // console.log("getRatesCached:"+cachedRates)
     return cachedRates;
 }
 

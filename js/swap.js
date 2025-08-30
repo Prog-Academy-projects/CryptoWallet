@@ -38,7 +38,7 @@ export async function updateSwapRate() {
     const toValueRate = rateBlock.querySelector(".swap-rate-to p:first-child");
 
     const rates = await getRatesCached();
-    console.log(COINS[fromCoin].symbol)
+    // console.log(COINS[fromCoin].symbol)
 
     const fromData = rates.find(r => r.symbol.toLowerCase() === COINS[fromCoin].symbol);
     const toData = rates.find(r => r.symbol.toLowerCase() === COINS[toCoin].symbol);

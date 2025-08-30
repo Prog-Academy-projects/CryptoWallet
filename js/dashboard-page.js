@@ -39,20 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
     renderBalanceChart();
     renderWalletCoins();
     renderMarketChart();
-    renderShadow();
+    // renderShadow();
 });
 
 // -------- IN DEV ---------------
 function renderShadow() {
     const charts = document.querySelectorAll(".chart-container");
-
-    console.log(charts);
     let active = 0;
 
     setInterval(() => {
     charts.forEach((chart, i) => {
         chart.style.animation = `shadowChart 2s linear infinite`;
-        chart.style.animationDelay = `${i * 2}s`; // смещение для каждого
+        chart.style.animationDelay = `${i * 2}s`;
         chart.classList.remove("active-glow")
     });
     charts[active].classList.add("../style/dashboard.css/active-glow");

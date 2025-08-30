@@ -57,7 +57,7 @@ body{
 }
 
 .right-panel{
-    /* background: var(--bs-body-bg); */
+    /* background: var(--bs-body-bg); --bs-dark-bg-subtle --bs-light --bs-light-rgb */
     background-color:#000000;
     color: var(--bs-body-color);
     padding-left: 2%;

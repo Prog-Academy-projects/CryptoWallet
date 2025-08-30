@@ -1,5 +1,5 @@
 window.onload = async function() {
-    console.info("layout-loader booted!");
+    // console.info("layout-loader booted!");
     const response = await fetch("../layout.html");
     const layoutHtml = await response.text();
 
