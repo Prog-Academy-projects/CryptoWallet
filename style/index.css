@@ -32,3 +32,17 @@ body{
     border-color: #2FA15D !important;
     scale: 1;
 }
+
+.my-form{
+    border-color: var(--bs-body-bg);
+}
+.my-form:checked{
+    background-color: #2FA15D;
+    border-color: #2FA15D;
+}
+
+.my-form:focus{
+    border-color: #2FA15D !important;
+    box-shadow: 0px 0px 10px #2FA15D !important;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out !important;
+}
