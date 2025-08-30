@@ -1,125 +1,61 @@
-html{
-  margin: 0;
-  padding: 0;
+.bd-placeholder-img{
+    font-size:1.125rem;
+    text-anchor:middle;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    user-select:none
 }
-body{
-    margin: 0;
-    padding: 0;
-    max-width: 1400px;
-    max-height: 100vh;
-    background-color: var(--bs);
+@media (min-width: 768px){
+    .bd-placeholder-img-lg{font-size:3.5rem}
 }
-.main{
-    height: 100vh;
+.bi{
+    vertical-align:-.125em;
+    fill:currentColor
 }
-
-.left-panel-xl{
-    /* width: 20%; */
-    /* background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000 ); */
-    background: linear-gradient(to top, var(--bs-body-bg), #4EFF9F 50%, var(--bs-body-bg));
-    color: var(--bs-light);
-    order: 0;
-    .coin-container{
-        position: relative;
-        width: 100%;
-        height: 200px;
-        img{
-            position: absolute;
-            top: -252px;
-            left: -15px;
-            order: 6;
-        }
-    }
+.nav-scroller{
+    position:relative;
+    z-index:2;
+    height:2.75rem;
+    overflow-y:hidden
 }
-.left-panel-sm{
-    background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000);
+.nav-scroller .nav{
+    display:flex;
+    flex-wrap:nowrap;
+    padding-bottom:1rem;
+    margin-top:-1px;
+    overflow-x:auto;
+    text-align:center;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch
 }
-.left-panel-md{
-    background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000);
-    a{
-        color: unset;
-    }
+.btn-bd-primary{
+    --bd-violet-bg: #712cf9;
+    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+    --bs-btn-font-weight: 600;--bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bd-violet-bg);
+    --bs-btn-border-color: var(--bd-violet-bg);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #6528e0;
+    --bs-btn-hover-border-color: #6528e0;
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #5a23c8;
+    --bs-btn-active-border-color: #5a23c8
 }
-.btn-menu{
-    background: linear-gradient(to top, #000000, #4EFF9F 50%, #000000);
-    border-color: transparent;
+.bd-mode-toggle{
+    z-index:1500
 }
-.btn-menu:hover{
-    background: #3E784E;
-    border-color: transparent;
+.bd-mode-toggle .bi{
+    width:1em;
+    height:1em
 }
-.btn-menu:active{
-    background-color: #50A542 !important;
-    border-color: transparent !important;
+.bd-mode-toggle .dropdown-menu .active .bi{
+    display:block!important
 }
-.active-cw{
-    background-color: #3E784E;
-}
-
-.right-panel{
-    padding-left: 2%;
-    padding-right: 2%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.icon{
-    height: 16px;
-    width: 16px;
-}
-
-@media (max-width: 767px) {
-    .left-panel-xl {
-        display: none !important;
-    }
-    .left-panel-md{
-        display: none !important;
-    }
-    .left-panel-sm{
-    }
-    .right-panel {
-        width: 100%;
-    }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    .left-panel-xl {
-        display: none !important;
-    }
-    .left-panel-md{
-    }
-    .left-panel-sm{
-        display: none !important;
-    }
-    .right-panel {
-        min-width: 90%;
-    }
-}
-@media (min-width: 992px) {
-    .left-panel-xl {
-        /* max-width: 20% !important; */
-    }
-    .left-panel-md{
-        display: none !important;
-    }
-    .left-panel-sm{
-        display: none !important;
-    }
-    .right-panel {
-        min-width: 72%;
-    }
-}
-@media (min-width: 1200px) {
-    .left-panel-xl {
-        min-width: 20% !important;
-    }
-    .left-panel-md{
-        display: none !important;
-    }
-    .left-panel-sm{
-        display: none !important;
-    }
-    .right-panel {
-        min-width: 78%;
-    }
+.my-btn-bd-primary{
+    --bd-violet-bg: #3E784E !important;
+    --bs-btn-hover-bg: #3E784E !important;
+    --bs-btn-hover-border-color: #3E784E !important;
+    --bs-btn-active-bg: #3E784E !important;
+    --bs-btn-active-border-color: #3E784E !important;
 }

@@ -1,13 +1,7 @@
 body{
     background: var(--bs) !important;
-}
-
-.my-btn-bd-primary{
-    --bd-violet-bg: #3E784E !important;
-    --bs-btn-hover-bg: #3E784E !important;
-    --bs-btn-hover-border-color: #3E784E !important;
-    --bs-btn-active-bg: #3E784E !important;
-    --bs-btn-active-border-color: #3E784E !important;
+    display: flex;
+    flex-direction:column
 }
 
 .login-button{
