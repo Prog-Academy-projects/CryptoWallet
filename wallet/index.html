@@ -11,42 +11,46 @@
     </div>
 
     <div data-content>
-        <nav class="container balance">
-            <div class="balance-info">
-                <h3 class="poppins-medium">Balance</h3>
-                <h3 class="poppins-medium" id="curBalance"></h3>
-                <p class="poppins-regular difference-style" id="curDifBalance"></p>
-            </div>
-            <div class="balance-chart">
-                <canvas id="doughnutChart"></canvas>
-            </div>
-        </nav>
+        
         <nav class="main-container">
-            <div>
+            <nav class="container balance">
+                <div class="balance-info">
+                    <h3 class="poppins-medium">Balance</h3>
+                    <h3 class="poppins-medium" id="curBalance"></h3>
+                    <p class="poppins-regular difference-style" id="curDifBalance"></p>
+                </div>
+                <div class="balance-chart">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </nav>  
+            <!-- <div>
                 <h3 class="h4 poppins-medium">My crypto currencies</h3> 
-                <nav class="container wallet">
-                    <ul id="walletСoins" class="wallet-coins">
+            </div> -->
+            <nav class="container wallet">
+                <h3 class="poppins-medium">My coins</h3>
+                <ul id="walletСoins" class="wallet-coins">
+                </ul>
+            </nav>
+            <nav class="container market">
+                <h3 class="poppins-medium">Market</h3>
+                <div class="market-table">
+                    <nav class="market-header poppins-medium">
+                        <div>#</div>
+                        <div>Name</div>
+                        <div></div>
+                        <div>Market Price</div>
+                        <div>Market Cap</div>
+                        <div>Volume(24h)</div>
+                        <div>24h %</div>
+                    </nav>
+                    <ul id="marketRates">
                     </ul>
-                </nav>
-            </div>
-            <div>
-                <h3 class="h4 poppins-medium">The most popular</h3>
-                <nav class="container market">
-                    <div class="market-table">
-                        <nav class="market-header poppins-medium">
-                            <div>#</div>
-                            <div>Name</div>
-                            <div></div>
-                            <div>Market Price</div>
-                            <div>Market Cap</div>
-                            <div>Volume(24h)</div>
-                            <div>24h %</div>
-                        </nav>
-                        <ul id="marketRates">
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
+            <!-- <div>
+                <h3 class="h4 poppins-medium">Market</h3>
+                
+            </div> -->
         </nav>
     </div>
 

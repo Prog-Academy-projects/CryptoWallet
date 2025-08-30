@@ -100,7 +100,7 @@ body{
 }
 @media (min-width: 992px) {
     .left-panel-xl {
-        min-width: 20% !important;
+        /* max-width: 20% !important; */
     }
     .left-panel-md{
         display: none !important;
@@ -109,7 +109,7 @@ body{
         display: none !important;
     }
     .right-panel {
-        min-width: 74%;
+        min-width: 72%;
     }
 }
 @media (min-width: 1200px) {
