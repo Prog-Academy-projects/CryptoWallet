@@ -29,7 +29,8 @@ jobs:
       - name: Copy js folder into dashboard
         run: |
           mkdir -p dashboard/js
-          cp -r js/* dashboard/js/
+          cp js/config.js dashboard/js/config.js
+          cp js/config.js js/config.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
