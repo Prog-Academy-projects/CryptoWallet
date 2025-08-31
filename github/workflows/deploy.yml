@@ -25,8 +25,8 @@ jobs:
       - name: Generate config.js with secret
         run: |
           echo "export const API_KEY = '${{ secrets.API_KEY }}';" > js/config.js
-          mkdir -p dashboard/js
-          cp js/config.js dashboard/js/config.js  
+          # mkdir -p dashboard/js
+          # cp js/config.js dashboard/js/config.js  
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
