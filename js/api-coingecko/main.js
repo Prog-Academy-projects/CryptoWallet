@@ -1,4 +1,4 @@
-import { API_KEY } from "./config";
+import { API_KEY } from "../config.js";
 
 export const URL = 'https://api.coingecko.com/api/v3/'
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
