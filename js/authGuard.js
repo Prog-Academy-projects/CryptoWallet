@@ -1,17 +1,17 @@
-const currentUser = localStorage.getItem("user");
+const storedUser = JSON.parse(localStorage.getItem("user"));
 
-if (!currentUser) {
+if (!storedUser) {
     window.location.href = "../index.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     // debugger
+    const displayName = storedUser.name || storedUser.email;
+
     const userNameEls = document.querySelectorAll(".currentUserName");
     userNameEls.forEach((e) => {
         console.log("User: ", e.value)
-        if (e) {
-        e.textContent = currentUser;
-    }
+        if (e) e.textContent = displayName;
     })
 });
 

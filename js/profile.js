@@ -1,3 +1,48 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const emailInput = document.getElementById("email");
+    if (emailInput && storedUser.email) {
+        emailInput.value = storedUser.email;
+    }
+
+    const nameInput = document.getElementById("full-name");
+    if (nameInput && storedUser.name) {
+        nameInput.value = storedUser.name;
+    }
+});
+
+const profileForm = document.querySelector(".profile-data-user form");
+
+if (profileForm) {
+    profileForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+
+        const fullName = document.getElementById("full-name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("pass").value.trim();
+        const confirmPass = document.getElementById("confpass").value.trim();
+
+        if (password && password !== confirmPass) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        storedUser.name = fullName || storedUser.name;
+        storedUser.email = email || storedUser.email;
+        if (password) {
+            storedUser.password = password;
+        }
+
+        localStorage.setItem("user", JSON.stringify(storedUser));
+        alert("Profile updated!");
+    });
+}
+
+
+
+
 import { getCryptoRates } from "./api-coingecko/crypto-rates.js";
 
 // ------------ RENDER RATES (by button) ------------
@@ -27,43 +72,4 @@ export async function renderRates() {
     });
 }
 
-
 document.querySelector("#getCryptoRates").addEventListener("click", renderRates)
-
-// -------- OLD initial version (example) ------------------
-function renderWalletTable() { 
-    const wallet = getWallet();
-    const tbody = document.querySelector(".walletBody");
-    tbody.innerHTML = "";
-
-    const cached = localStorage.getItem('cryptoRates');
-    const dataRates = JSON.parse(cached).data;
-    // parsed.data
-    const btc = dataRates.find(c => c.symbol === "btc"); 
-    console.log(dataRates)
-
-    let total_usd_balance = 0;
-
-    Object.entries(wallet).forEach(([coin, balance]) => {
-        const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
-        console.log(coinRate.usd);
-        const usd_balance = coinRate.usd*balance
-        total_usd_balance += usd_balance;
-
-        const pattern = `
-            <tr>
-                <td><h3>${COINS[coin].name}</h3></td>
-                <td>${balance != null ? Number(balance).toLocaleString() : '-'}</td>
-                <td>${coinRate.usd}</td>
-                <td>${usd_balance != null ? Number(usd_balance).toLocaleString() : '-'}</td>
-            </tr>
-            <p></p>
-        `;
-        tbody.insertAdjacentHTML('beforeend', pattern)
-    });
-
-    const pattern = `
-            <p>${total_usd_balance.toLocaleString()}</p>
-        `;
-        tbody.insertAdjacentHTML('beforeend', pattern)
-}
