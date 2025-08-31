@@ -25,7 +25,7 @@
         gap: 5%;
         .swap-item {
             /* background-color: #645F5F; */
-            background-color: var(--bs-tertiary-bg);
+            background-color: var(--bs-border-color);
             width: 319px;
             height: 52px;
             border-radius: 30px;

@@ -8,21 +8,63 @@
     </div>
 
     <div data-content>
-        <div class="profile-data">user data</div>
-    <table>
-        <button id="getCryptoRates">Get Crypto Rates</button>
-        <thead>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Rate to USD</th>
-            <th>usd_market_cap</th>
-            <th>usd_24h_vol</th>
-            <th>usd_24h_change</th>
-            <th>last_updated_at</th>
-        </thead>
-        <tbody class="cryptoRatesBody">
-        </tbody>
-    </table>
+        <div class="profile-data">
+            <div class="profile-data-user">
+                <form >
+                    <div class="form-data">
+                        <h4 class="poppins-regular">Personal Information</h4>
+                        <div class="form-row">
+                            <label for="full-name" class="label">Full Name</label>
+                            <input class="form-control" type="text" id="full-name" placeholder="full name"
+                            maxlength="50" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="email" class="label">Email</label>
+                            <input class="form-control" type="email" id="email" placeholder="your-email@mail.com" 
+                            autocomplete="email"
+                            maxlength="50" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="pass">Password</label>
+                            <input class="form-control" type="password" id="pass" minlength="6"
+                            maxlength="8" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="confpass">Confirm</label>
+                            <input class="form-control" type="password" id="confpass" minlength="6"
+                            maxlength="8" required>
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <button class="form-button poppins-regular btn" type="submit" name="submit" id="submitUser">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="profile-data-account poppins-regular">
+                <h4 class="poppins-regular">Your card</h4>
+                <div class="bank-card1">
+                    <p>BANK</p>
+                    <p><img src="../assets/img/chip.png" alt=""></p>
+                    <h5>**** **** **** 1234</h5>
+                    <p>Card Holder</p>
+                    <p class="exp">12/28</p>
+                </div>
+                <div class="form-btn">
+                    <button class="form-button poppins-regular btn" type="submit" name="submit" id="submitCard">Save</button>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="bank-card">
+            <div class="card-top">
+                <span class="logo">💳</span>
+                <span class="brand">BANK</span>
+            </div>
+            <div class="card-num">**** **** **** 1234</div>
+            <div class="card-bottom">
+                <span class="holder">IVAN IVANOV</span>
+                <span class="exp">12/28</span>
+            </div>
+        </div> -->
     </div>
 
 </template>

@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
         e.textContent = currentUser;
     }
     })
-    
 });
 
 document.addEventListener("DOMContentLoaded", () => {
