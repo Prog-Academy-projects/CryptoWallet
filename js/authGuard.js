@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // debugger
     const userNameEls = document.querySelectorAll(".currentUserName");
     userNameEls.forEach((e) => {
-        console.log("User: ", e)
+        console.log("User: ", e.value)
         if (e) {
         e.textContent = currentUser;
     }
