@@ -31,6 +31,14 @@ jobs:
           echo "-----------------------------"
           ls -l js
 
+      - name: Copy config.js into publish folder
+        run: |
+          cp js/config.js ./js/config.js
+          echo "----- ./js/config.js content -----"
+          cat ./js/config.js
+          echo "-----------------------------"
+          ls -l ./js
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
