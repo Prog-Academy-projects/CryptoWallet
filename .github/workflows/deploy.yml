@@ -24,8 +24,10 @@ jobs:
 
       - name: Generate config.js with secret
         run: |
+          mkdir -p js
           echo "export const API_KEY = '${{ secrets.API_KEY }}';" > js/config.js
-      
+          ls -l js
+
       # - name: Copy js folder into dashboard
       #   run: |
       #     mkdir -p dashboard/js
@@ -36,3 +38,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
+          keep_files: true
