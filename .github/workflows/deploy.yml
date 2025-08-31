@@ -27,12 +27,12 @@ jobs:
 
       - name: Generate config.js with secret
         run: |
-          mkdir -p dist/js
-          echo "export const API_KEY = '${{ secrets.API_KEY }}';" > dist/js/config.js
+          mkdir -p js
+          echo "export const API_KEY = '${{ secrets.API_KEY }}';" > js/config.js
           echo "----- config.js content -----"
-          cat dist/js/config.js
+          cat js/config.js
           echo "-----------------------------"
-          ls -l dist/js
+          ls -l js
 
       # - name: Commit config.js to gh-pages
       #   run: |
@@ -53,4 +53,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: .
