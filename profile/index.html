@@ -1,0 +1,60 @@
+<template data-title="Crypto Wallet - Profile page"
+          data-section="profile"
+          data-head='<link rel="stylesheet" href="../style/profile.css">'
+          data-scripts='<script type="module" src="../js/profile.js"></script>'>
+
+    <div data-caption>
+    Profile
+    </div>
+
+    <div data-content>
+        <div class="profile-data">
+            <div class="profile-data-user">
+                <form >
+                    <div class="form-data">
+                        <h4 class="poppins-regular">Personal Information</h4>
+                        <div class="form-row">
+                            <label for="full-name" class="label">Full Name</label>
+                            <input class="form-control" type="text" id="full-name" placeholder="full name"
+                            maxlength="50" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="email" class="label">Email</label>
+                            <input class="form-control" type="email" id="email" placeholder="your-email@mail.com" 
+                            autocomplete="email"
+                            maxlength="50" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="pass">Password</label>
+                            <input class="form-control" type="password" id="pass" minlength="6"
+                            maxlength="8" required>
+                        </div>
+                        <div class="form-row">
+                            <label for="confpass">Confirm</label>
+                            <input class="form-control" type="password" id="confpass" minlength="6"
+                            maxlength="8" required>
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <button class="form-button poppins-regular btn" type="submit" name="submit" id="submitUser">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="profile-data-account poppins-regular">
+                <h4 class="poppins-regular">Your card</h4>
+                <div class="bank-card">
+                    <p class="brand">BANK</p>
+                    <img class="chip" src="../assets/img/chip.png" alt="">
+                    <h5 class="card-num">**** **** **** 1234</h5>
+                    <p class="holder">Card Holder</p>
+                    <p class="exp">12/28</p>
+                </div>
+                <div class="form-btn">
+                    <button class="form-button poppins-regular btn" type="submit" name="submit" id="submitCard">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>
+<script src="../js/layout-loader.js"></script>
