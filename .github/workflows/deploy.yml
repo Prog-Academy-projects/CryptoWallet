@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Generate config.js for GitHub Pages
 
 on:
   push:
@@ -10,17 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout gh-pages branch
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: |
-          if [ -f package.json ]; then npm install; fi
+          ref: gh-pages
 
       - name: Generate config.js with secret
         run: |
@@ -31,15 +24,24 @@ jobs:
           echo "-----------------------------"
           ls -l js
 
-          grep -v '^config.js$' .gitignore > .gitignore.deploy
-          mv .gitignore.deploy .gitignore
-      - name: Check deployed files
+      - name: Commit config.js to gh-pages
         run: |
-          echo "Listing js folder:"
-          ls -R js
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add js/config.js
+          git commit -m "Add/Update config.js from secrets [skip ci]" || echo "No changes to commit"
+          git push origin gh-pages
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+
+      #     grep -v '^config.js$' .gitignore > .gitignore.deploy
+      #     mv .gitignore.deploy .gitignore
+      # - name: Check deployed files
+      #   run: |
+      #     echo "Listing js folder:"
+      #     ls -R js
+
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: .
