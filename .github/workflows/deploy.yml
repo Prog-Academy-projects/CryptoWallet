@@ -33,10 +33,6 @@ jobs:
 
           grep -v '^config.js$' .gitignore > .gitignore.deploy
           mv .gitignore.deploy .gitignore
-          echo "----- .gitignore.deploy content -----"
-          cat .gitignore.deploy
-          echo "-----------------------------"
-          ls -l ./
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
