@@ -22,9 +22,8 @@ jobs:
         run: npm install
 
       - name: Build project
-        run: npm run build
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          echo "export const API_KEY = '${{ secrets.API_KEY }}';" > config.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
