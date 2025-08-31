@@ -1,0 +1,51 @@
+<template data-title="Crypto Wallet - Wallet page"
+          data-section="wallet"
+          data-head='<link rel="stylesheet" href="../style/wallet.css">'
+          data-scripts='
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+            <script type="module" src="../js/wallet-page.js"></script>
+        '>
+
+    <div data-caption>
+        Wallet
+    </div>
+
+    <div data-content>
+        
+        <nav class="main-container">
+            <nav class="container balance">
+                <div class="balance-info">
+                    <h3 class="poppins-medium">Balance</h3>
+                    <h3 class="poppins-medium" id="curBalance"></h3>
+                    <p class="poppins-regular difference-style" id="curDifBalance"></p>
+                </div>
+                <div class="balance-chart">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </nav>  
+            <nav class="container wallet">
+                <h3 class="poppins-medium">My coins</h3>
+                <ul id="walletСoins" class="wallet-coins">
+                </ul>
+            </nav>
+            <nav class="container market">
+                <h3 class="poppins-medium">Market</h3>
+                <div class="market-table">
+                    <nav class="market-header poppins-medium">
+                        <div>#</div>
+                        <div>Name</div>
+                        <div></div>
+                        <div>Market Price</div>
+                        <div>Market Cap</div>
+                        <div>Volume(24h)</div>
+                        <div>24h %</div>
+                    </nav>
+                    <ul id="marketRates">
+                    </ul>
+                </div>
+            </nav>
+        </nav>
+    </div>
+
+</template>
+<script src="../js/layout-loader.js"></script>

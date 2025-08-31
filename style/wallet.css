@@ -1,0 +1,194 @@
+.main-container{
+    max-width: 100%;
+    display: grid;
+    gap: 5%;
+    overflow-y: auto;
+}
+.container{
+    background-color: var(--bs-tertiary-bg);
+    /* height: 42vh; */
+    border-radius: 10px;
+    padding: 3%;
+}
+
+.balance {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+    h3:first-child{
+        padding-bottom: 10px ;
+    }
+    #curDifBalance{
+        font-size: 1.1rem;
+    }
+    .balance-chart{
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.wallet{
+    .wallet-coins{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap; 
+        width: 100%;
+        /* height: 35vh; */
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow-y: auto;
+        gap: 15px;
+        li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            img{
+                width: 35px;
+                height: 35px;
+            }
+            div{
+                display: flex;
+                flex-direction: column;
+                h5{
+                    margin: 0;
+                }
+                p{
+                    margin: 0;
+                    font-size: .9rem;
+                    color: #AB9F9F; 
+                }
+            }
+            div:first-of-type{
+                align-items: flex-start;
+                width: 25%;
+            }
+            div:last-child{
+                align-items: flex-end;
+                width: 25%;
+                h5{
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+.market{
+    .market-table {
+        ul{
+            display: grid;
+            grid-template-rows: auto;
+            row-gap: 8px;
+            /* height: 33.5vh; */
+            overflow-y: auto;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .market-header, .market-row {
+        div:first-of-type{
+            padding-left: 5%;
+        }
+        display: grid;
+        grid-template-columns: 
+            0.3fr                 /* # */
+            1.1fr                 /* Name */
+            0.4fr                 /* Code */
+            1.1fr                 /* Market Price */
+            1.8fr                   /* Market Cap */
+            1.8fr                 /* Volume(24h) */
+            1fr;                /* 24h % */
+        align-items: center;
+        div{
+            display: flex;
+        }
+        div:not(:nth-child(-n + 3)){
+            justify-content: end;
+        }
+    }
+
+    .market-header {
+        font-size: .9rem;
+        border-top: 2px solid #333;
+        border-bottom: 2px solid #333;
+        padding: 3px 0 3px 0;; 
+    }
+
+    .market-row {
+        font-size: .9rem;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #333; 
+        div:nth-child(3){
+            font-size: .9rem;
+            color: #AB9F9F;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .main-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .balance {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .wallet{
+        grid-area: 2 / 1 / 3 / 2;
+    }
+    .market{
+        grid-area: 3 / 1 / 4 / 2;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .main-container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .balance {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .wallet{
+        grid-area: 1 / 2 / 2 / 3;
+    }
+    .market{
+        grid-area: 2 / 1 / 3 / 3;
+    }
+}
+@media (min-width: 992px) {
+    .main-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .balance {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .wallet{
+        grid-area: 2 / 1 / 3 / 2;
+    }
+    .market{
+        grid-area: 3 / 1 / 4 / 2;
+    }
+}
+@media (min-width: 1200px) {
+    .main-container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .balance {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .wallet{
+        grid-area: 1 / 2 / 2 / 3;
+    }
+    .market{
+        grid-area: 2 / 1 / 3 / 3;
+    }
+}
