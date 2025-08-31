@@ -135,6 +135,7 @@ export async function renderMarketRates() {
                 <div class="poppins-regular">${usd_market_cap != null ? "$" + Number(usd_market_cap).toLocaleString(undefined, {maximumFractionDigits: 0}) : '-'}</div>
                 <div class="poppins-regular">${usd_24h_vol != null ? "$" + Number(usd_24h_vol).toLocaleString(undefined, {maximumFractionDigits: 0}) : '-'}</div>
                 <div class="poppins-regular">${span.outerHTML}</div>
+                <div><button class="btn-small" id="${symbol.toUpperCase()}">$</button></div>
             </li>
         `;
         list.insertAdjacentHTML('beforeend', pattern)
