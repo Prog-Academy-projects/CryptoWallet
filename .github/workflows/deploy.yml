@@ -26,12 +26,10 @@ jobs:
         run: |
           mkdir -p js
           echo "export const API_KEY = '${{ secrets.API_KEY }}';" > js/config.js
+          echo "----- config.js content -----"
+          cat js/config.js
+          echo "-----------------------------"
           ls -l js
-
-      # - name: Copy js folder into dashboard
-      #   run: |
-      #     mkdir -p dashboard/js
-      #     # cp -r js/* dashboard/js/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
