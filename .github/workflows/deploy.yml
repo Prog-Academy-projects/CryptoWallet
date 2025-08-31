@@ -22,7 +22,7 @@ jobs:
         run: |
           if [ -f package.json ]; then npm install; fi
 
-      - name: Prepare config.js
+      - name: Generate config.js with secret
         run: |
           mkdir -p js
           echo "export const API_KEY = '${{ secrets.API_KEY }}';" > js/config.js
@@ -30,14 +30,16 @@ jobs:
           cat js/config.js
           echo "-----------------------------"
           ls -l js
-          find .
 
-          # grep -v '^config.js$' .gitignore > .gitignore.deploy
-          # mv .gitignore.deploy .gitignore
+          grep -v '^config.js$' .gitignore > .gitignore.deploy
+          mv .gitignore.deploy .gitignore
+      - name: Check deployed files
+        run: |
+          echo "Listing js folder:"
+          ls -R js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./
-          keep_files: true
