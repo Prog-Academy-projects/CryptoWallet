@@ -1,4 +1,6 @@
-import {COINS} from "./settings.js"
+import {COINS} from "./settings.js";
+import { initSwapPage } from "./swap-page.js";
+
 
 export const showSwapModal = (coinId) => {
     const modal = document.getElementById("swapModal").firstElementChild;
@@ -21,7 +23,7 @@ export const showSwapModal = (coinId) => {
                             1
                             </p>
                             <p>
-                            ${coinId}
+                            USDT
                             </p>
                         </div>
                         <div>
@@ -31,7 +33,7 @@ export const showSwapModal = (coinId) => {
                             <p>
                             </p>
                             <p>
-                            USDT
+                            ${coinId}
                             </p>
                         </div>
                     </li>
@@ -43,10 +45,10 @@ export const showSwapModal = (coinId) => {
                         </div>
                         <div class="dropdown">
                             <button id="fromCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" 
-                            aria-describedby="validationfromCoinDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-value="${coinId}">
-                                <img src="../assets/img/${symbol}.png" alt="${COINS[coinId].name.toLowerCase()}" width="20"> ${coinId}
+                            aria-describedby="validationfromCoinDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-value="USDT">
+                                <img src="../assets/img/usdt.png" alt="tether" width="20"> USDT
                             </button>
-                            <input type="hidden" name="coin" id="fromCoinInput" value="${coinId}">
+                            <input type="hidden" name="coin" id="fromCoinInput" value="USDT">
                             <ul class="dropdown-menu" id="fromCoinList">
                             </ul>
                         </div>
@@ -60,10 +62,11 @@ export const showSwapModal = (coinId) => {
                         <label for="toCoin">To:</label>
                         <input id="toCoin" placeholder="0.00" disabled readonly>
                         <div class="dropdown">
-                            <button id="toCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-value="USDT">
-                                <img src="../assets/img/usdt.png" alt="tether" width="20"> USDT
+                            <button id="toCoinDropdown" class="coinDropdown btn btn-secondary dropdown-toggle" type="button" 
+                            data-bs-toggle="dropdown" aria-expanded="false" data-value="${coinId}">
+                                <img src="../assets/img/${symbol}.png" alt="${COINS[coinId].name.toLowerCase()}" width="20"> ${coinId}
                             </button>
-                            <input type="hidden" name="coin" id="toCoinInput" value="USDT">
+                            <input type="hidden" name="coin" id="toCoinInput" value="${coinId}">
                             <ul class="dropdown-menu" id="toCoinList">
                             </ul>
                         </div>
@@ -75,10 +78,8 @@ export const showSwapModal = (coinId) => {
             </div>
         </nav>
     `
-    modal.insertAdjacentHTML('beforeend', pattern)
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = "../js/swap-page.js";
-    document.body.appendChild(script);
-    document.querySelector(".modal-loader").classList.remove("active")
+    modal.insertAdjacentHTML('beforeend', pattern);
+
+    const newSwapContainer = modal.querySelector(".swap-container");
+    initSwapPage(newSwapContainer);
 }
