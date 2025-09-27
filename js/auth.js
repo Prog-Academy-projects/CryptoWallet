@@ -1,4 +1,14 @@
-if (localStorage.getItem("user")) {
+let storedUser = null;
+
+try {
+    const userStr = localStorage.getItem("user");
+    storedUser = userStr ? JSON.parse(userStr) : null;
+} catch (e) {
+    console.error("Error user parser from localStorage:", e);
+    storedUser = null;
+}
+// if (localStorage.getItem("user")) {
+if (storedUser) {
     window.location.href = "./dashboard/index.html";
 }
 
@@ -12,8 +22,6 @@ if (loginForm) {
         const password = document.getElementById("floatingPassword").value.trim();
 
         if (email && password) {
-            // localStorage.setItem("user", email);
-            // window.location.href = "./dashboard/index.html";
             const userObj = {
                 email: email,
                 password: password,

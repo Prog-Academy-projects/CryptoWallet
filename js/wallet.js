@@ -13,8 +13,15 @@ const wallet = getWallet();
 const dataRates = await getRatesCached();
 
 export function getWallet() {
-    const walletData = localStorage.getItem(CACHE_KEY);
-    return walletData ? JSON.parse(walletData) : DEFAULT_WALLET;
+    try {
+        const walletData = localStorage.getItem(CACHE_KEY);
+        return walletData ? JSON.parse(walletData) : DEFAULT_WALLET;
+    } catch (e) {
+        console.error("Error wallet parser from localStorage", e);
+        return DEFAULT_WALLET;
+    }
+    // const walletData = localStorage.getItem(CACHE_KEY);
+    // return walletData ? JSON.parse(walletData) : DEFAULT_WALLET;
 }
 
 export function saveWallet(wallet) {

@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    // const storedUser = JSON.parse(localStorage.getItem("user"));
+    let storedUser = null;
+
+    try {
+        const userStr = localStorage.getItem("user");
+        storedUser = userStr ? JSON.parse(userStr) : null;
+    } catch (e) {
+        console.error("Error user parser from localStorage:", e);
+        storedUser = null;
+    }
     const emailInput = document.getElementById("email");
     if (emailInput && storedUser.email) {
         emailInput.value = storedUser.email;
@@ -17,7 +26,16 @@ if (profileForm) {
     profileForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+        // const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+        let storedUser = null;
+
+        try {
+            const userStr = localStorage.getItem("user");
+            storedUser = userStr ? JSON.parse(userStr) : null;
+        } catch (e) {
+            console.error("Error user parser from localStorage:", e);
+            storedUser = null;
+        }
 
         const fullName = document.getElementById("full-name").value.trim();
         const email = document.getElementById("email").value.trim();
