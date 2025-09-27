@@ -1,5 +1,5 @@
 import { URL, req } from "./main.js";
-import { COINS_BY_SYMBOL, COINS_GET_RATE } from "../settings.js";
+import { COINS_BY_SYMBOL, COINS_GET_RATE, DEFAULT_WALLET } from "../settings.js";
 
 
 const CACHE_TTL = 24 * 60 * 60 * 1000;
@@ -29,13 +29,19 @@ export const getCryptoRates = async (coins) => {
     `&include_24hr_change=true&include_last_updated_at=true&precision=2`;
 
     try {
-        const cached = localStorage.getItem(CACHE_KEY);
-        if (cached) {
-            const parsed = JSON.parse(cached);
+        // const cached = localStorage.getItem(CACHE_KEY);
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+            const parsed = cached ? JSON.parse(cached) : DEFAULT_WALLET; //JSON.parse(cached);
             if (Date.now() - parsed.timestamp < CACHE_TTL) {
                 console.log("Use data from localStorage");
                 return parsed.data;
             }
+        }
+        } catch (e) {
+            console.error("Error wallet parser from localStorage", e);
+            return DEFAULT_WALLET;
         }
 
         const data = await req(url);

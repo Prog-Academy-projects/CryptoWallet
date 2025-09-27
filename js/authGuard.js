@@ -1,4 +1,14 @@
-const storedUser = JSON.parse(localStorage.getItem("user"));
+let storedUser = null;
+
+try {
+    const userStr = localStorage.getItem("user");
+    storedUser = userStr ? JSON.parse(userStr) : null;
+} catch (e) {
+    console.error("Error user parser from localStorage:", e);
+    storedUser = null;
+}
+
+// const storedUser = JSON.parse(localStorage.getItem("user"));
 
 if (!storedUser) {
     window.location.href = "../index.html";
