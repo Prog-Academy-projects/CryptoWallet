@@ -1,5 +1,5 @@
-import { URL, req } from "./main.js";
-import { COINS_BY_SYMBOL, COINS_GET_RATE, DEFAULT_WALLET } from "../settings.js";
+import { URL, req, handleRequestError } from "./main.js";
+import { COINS_BY_SYMBOL, COINS_GET_RATE } from "../settings.js";
 
 
 const CACHE_TTL = 24 * 60 * 60 * 1000;
@@ -14,7 +14,7 @@ export async function getRatesCached() {
         cachedRates = await getCryptoRates(COINS_GET_RATE);
         lastUpdated = now;
     }
-    // console.log("getRatesCached:"+cachedRates)
+    // console.log("getRatesCached result:", cachedRates);
     return cachedRates;
 }
 
@@ -24,28 +24,27 @@ export const getCryptoRates = async (coins) => {
     loader?.classList.add("active");
 
     const url = URL +
-    `simple/price?symbols=${coins}&vs_currencies=usd` +
-    `&include_market_cap=true&include_24hr_vol=true` +
-    `&include_24hr_change=true&include_last_updated_at=true&precision=2`;
+        `simple/price?symbols=${coins}&vs_currencies=usd` +
+        `&include_market_cap=true&include_24hr_vol=true` +
+        `&include_24hr_change=true&include_last_updated_at=true&precision=2`;
 
     try {
-        // const cached = localStorage.getItem(CACHE_KEY);
         try {
             const cached = localStorage.getItem(CACHE_KEY);
             if (cached) {
-            const parsed = cached ? JSON.parse(cached) : DEFAULT_WALLET; //JSON.parse(cached);
-            if (Date.now() - parsed.timestamp < CACHE_TTL) {
-                console.log("Use data from localStorage");
-                return parsed.data;
+                const parsed = JSON.parse(cached);
+                if (Date.now() - parsed.timestamp < CACHE_TTL) {
+                    console.log("Use data from localStorage");
+                    return parsed.data;
+                }
             }
-        }
         } catch (e) {
             console.error("Error wallet parser from localStorage", e);
-            return DEFAULT_WALLET;
+            return [];
         }
 
         const data = await req(url);
-        console.log("Fetched:", data);
+        console.log("Fetched data: ", data);
 
         const arr = Object.entries(data).map(([symbol, values]) => ({
             symbol,
@@ -57,9 +56,11 @@ export const getCryptoRates = async (coins) => {
             timestamp: Date.now(),
             data: arr
         }));
+        // console.log("Prepared array for return: ", arr);
         return arr;
     } catch (error) {
         console.log("Fetch error:", error);
+        handleRequestError(error);
         return [];
     } finally {
         loader?.classList.remove("active");
