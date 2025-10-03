@@ -8,13 +8,18 @@ import { createSpan } from "./differ-span.js";
 import { getWallet } from "./wallet.js";
 
 
-const wallet = getWallet();
-const dataRates = await getRatesCached();
-
 let total_usd_balance = 0;
 
+export async function initDashboard() {
+    const wallet = getWallet();
+    const dataRates = await getRatesCached();
+
+    await renderBalanceChart(wallet, dataRates);
+    await renderWalletCoins(wallet, dataRates);
+}
+
 // ------------- render Balance Chart -----------------
-export async function renderBalanceChart() {
+export async function renderBalanceChart(wallet, dataRates) {
     const labels = Object.keys(wallet);
     const balances = Object.entries(wallet).map(([coin, amount]) => {
         const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
@@ -24,13 +29,14 @@ export async function renderBalanceChart() {
 }
 
 // ------------- render Wallet Coins -----------------
-export async function renderWalletCoins() {
+export async function renderWalletCoins(wallet, dataRates) {
     const list = document.getElementById("walletСoins");
     list.innerHTML = "";
+    total_usd_balance = 0;
 
     console.log("Coins in wallet: ")
     Object.entries(wallet).forEach(([coin, balance]) => {
-        const coinRate = dataRates.find(c => c.symbol === COINS[coin].symbol);
+        const coinRate = dataRates.find(c => c.symbol.toLowerCase() === COINS[coin].symbol.toLowerCase());
         const usd_balance = coinRate.usd*balance
         total_usd_balance += usd_balance;
 

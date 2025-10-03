@@ -1,4 +1,4 @@
-import { URL, req } from "./main.js";
+import { URL, req, handleRequestError } from "./main.js";
 import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@8/+esm';
 
 const DB_NAME = 'cryptoDB';
@@ -43,6 +43,7 @@ export const getMarketChart = async (coin) => {
         return data;
     } catch (error) {
         console.log("Fetch error:", error);
+        handleRequestError(error);
         return [];
     } finally {
         loader?.classList.remove("active");
