@@ -1,4 +1,4 @@
-import { renderBalanceChart, renderWalletCoins} from "./dashboard-wallet.js";
+import { initDashboard, renderBalanceChart, renderWalletCoins} from "./dashboard-wallet.js";
 import { renderMarketChart } from "./dashboard-market.js";
 
 
@@ -36,8 +36,9 @@ const test_data = {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderBalanceChart();
-    renderWalletCoins();
+    // renderBalanceChart();
+    // renderWalletCoins();
+    initDashboard(),
     renderMarketChart();
     // renderShadow();
 });
